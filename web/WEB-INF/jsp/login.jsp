@@ -12,10 +12,10 @@
 <main class="form-signin" style="margin-top: 150px">
     <form action="${pageContext.request.contextPath}/user/testLogin" method="post" >
         <!--src是放那个头像的地方。-->
-        <img class="mb-4" src="1.jpg" alt="" width="72" height="72">
+        <img class="mb-4" src="/online/images/1.jpg" alt="无法显示图片" width="72" height="72">
         <h1 class="h3 mb-3 fw-normal">登&nbsp;&nbsp;&nbsp;录</h1>
         <label class="visually-hidden">用户名</label>
-        <input type="text" id="username" class="form-control" required>
+        <input type="text" name="username" class="form-control" required>
         <label class="visually-hidden">密码</label>
         <input type="text" name="password" class="form-control" required>
 
@@ -24,8 +24,9 @@
     </form>
         <br>
     <form id="register" action="${pageContext.request.contextPath}/user/register">
-        <input class="w-75 btn btn-lg btn-primary" type="button" value="注册" >
+        <input class="w-75 btn btn-lg btn-primary" type="submit" value="注册" >
     </form>
+
 </main>
 <%--<script>--%>
 <%--    function resgister() {--%>

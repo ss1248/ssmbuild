@@ -69,6 +69,7 @@ public class UserController {
         userService.deleteUserById(id);
         return "redirect:/user/allUser";
     }
+
     //查询
     @RequestMapping("queryUser")
     public String queryUser(String queryUserName,Model model){
@@ -85,18 +86,20 @@ public class UserController {
         model.addAttribute("list",userList);
         return "allUser";
     }
-    @RequestMapping("/login")    //请求登录和注册，返回到登录和注册页面
+    //登录界面跳转接口
+    @RequestMapping("/login")
     public String login(){
-        return "login1";
+        return "login";
     }
-    @RequestMapping("/register")    //请求注册
+    //注册界面跳转接口
+    @RequestMapping("/register")
     public String register(){
-        //return "register1";
-        return "register1";
+        return "register";
     }
-
+    //登录检测接口
     @RequestMapping("/testLogin")
     public String login(User user, Model model){
+        System.out.println(user);
         for (User user1 : userService.queryAllUser()) {
             boolean flag1 = user.getUsername().equals(user1.getUsername());
             boolean flag2 = user.getPassword().equals(user1.getPassword());
@@ -105,19 +108,20 @@ public class UserController {
             }
             else {
                 model.addAttribute("secessful","登陆成功");
-                return "login1";
+                return "login";
             }
         }
         model.addAttribute("error","用户名或密码错误!");
         return "login1";
     }
+    //注册检测接口
     @RequestMapping("/testRegister")
     public String register(User user, Model model, HttpServletRequest request){
         for (User user1 : userService.queryAllUser()) {
             if (user.getUsername().equals(user1.getUsername())) {
                 model.addAttribute("error","该用户名已被注册!");
                 //return "register2";
-                return "register1";
+                return "register";
             }else {
                 continue;
             }
@@ -125,11 +129,11 @@ public class UserController {
         if(user.getPassword().length()<6){
             model.addAttribute("error","密码需大于等于6位");
             //return "register1";
-            return "register1";
+            return "register";
         }else if(!(user.getPassword().equals(request.getParameter("password2")))){
             model.addAttribute("error","两次密码不一致!");
             //return "register1";
-            return "register1";
+            return "register";
         }
         userService.addUser(user);
         return "redirect:/";
