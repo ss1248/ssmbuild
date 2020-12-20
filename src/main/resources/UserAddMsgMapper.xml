@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzq.dao.AddMsgMapper">
+
+
+    <!--查询消息-->
+    <select id="selectMsgByUserId" resultType="AddMsg" parameterType="String">
+        select * from chatonline.useraddmsg
+        where toUserId=#{toUserId}
+    </select>
+    <!--消息数量-->
+    <select id="getMsgNum" parameterType="int">
+        select count(*) from chatonline.useraddmsg
+        where toUserId = #{toUserId}
+    </select>
+    <insert id="addMsg" parameterType="AddMsg">
+      insert into chatonline.useraddmsg (toUserId,fromUserId,msg)
+      value (#{toUserId},#{fromUserId},#{msg})
+    </insert>
+    <delete id="deleteMsg" parameterType="String">
+        delete from chatonline.useraddmsg
+        where fromUserId=#{fromUserId}
+    </delete>
+
+</mapper>
