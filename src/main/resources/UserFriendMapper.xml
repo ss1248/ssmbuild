@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzq.dao.UserFriendMapper">
+    <insert id="addFriend" parameterType="UserFriend">
+    insert into chatonline.userfriend (userid,friendId)
+    value (#{userid}, #{friendId})
+  </insert>
+    <delete id="deleteFriend" parameterType="String">
+    delete from chatonline.userfriend
+    where userid = #{userid} and friendId = #{friendId} and friendName=#{friendName}
+  </delete>
+    <select id="queryUserById" resultType="UserFriend">
+        select * from chatonline.userfriend
+        where friendId = #{friendId}
+    </select>
+    <select id="queryAllFriend" resultType="UserFriend">
+        select * from chatonline.userfriend
+    </select>
+    <select id="queryUserByName" resultType="UserFriend">
+        select * from chatonline.userfriend
+        where friendId = #{friendId}
+    </select>
+</mapper>
