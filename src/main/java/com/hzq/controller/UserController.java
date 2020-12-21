@@ -96,6 +96,11 @@ public class UserController {
     public String register(){
         return "register";
     }
+    //忘记密码跳转接口
+    @RequestMapping("/forget")
+    public String forget(){
+        return "forget";
+    }
     //登录检测接口
     @RequestMapping("/testLogin")
     public String login(User user, Model model){
@@ -108,7 +113,7 @@ public class UserController {
             }
             else {
                 model.addAttribute("secessful","登陆成功");
-                return "login";
+                return "login2";
             }
         }
         model.addAttribute("error","用户名或密码错误!");
@@ -121,7 +126,7 @@ public class UserController {
             if (user.getUsername().equals(user1.getUsername())) {
                 model.addAttribute("error","该用户名已被注册!");
                 //return "register2";
-                return "register";
+                return "register1";
             }else {
                 continue;
             }
@@ -129,11 +134,11 @@ public class UserController {
         if(user.getPassword().length()<6){
             model.addAttribute("error","密码需大于等于6位");
             //return "register1";
-            return "register";
+            return "register1";
         }else if(!(user.getPassword().equals(request.getParameter("password2")))){
             model.addAttribute("error","两次密码不一致!");
             //return "register1";
-            return "register";
+            return "register1";
         }
         userService.addUser(user);
         return "redirect:/";

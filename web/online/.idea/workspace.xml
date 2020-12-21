@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bf0289e0-bb74-40b2-b119-09957adea053" name="默认更改列表" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1lb0icUtRKtvGZ8y8eja8Xaw0CF" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\下载\登陆\CSS3纸片折叠登录表单模板" />
+      <recent name="E:\下载\登陆\CSS3纸片折叠登录表单模板\js" />
+      <recent name="E:\下载\登陆\CSS3纸片折叠登录表单模板\css" />
+      <recent name="E:\下载\登陆\CSS3纸片折叠登录表单模板\images\backgrounds" />
+      <recent name="E:\下载\CSS3纸片折叠登录表单模板" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bf0289e0-bb74-40b2-b119-09957adea053" name="默认更改列表" comment="" />
+      <created>1607850611910</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1607850611910</updated>
+      <workItem from="1607850613118" duration="2442000" />
+      <workItem from="1607853876575" duration="11788000" />
+      <workItem from="1607873885467" duration="4541000" />
+      <workItem from="1607910317446" duration="147000" />
+      <workItem from="1607915227309" duration="579000" />
+      <workItem from="1607926806491" duration="3414000" />
+      <workItem from="1607931401251" duration="1176000" />
+      <workItem from="1607949514406" duration="853000" />
+      <workItem from="1607953685649" duration="1681000" />
+      <workItem from="1608041839632" duration="603000" />
+      <workItem from="1608385555072" duration="5000" />
+      <workItem from="1608385589130" duration="6056000" />
+      <workItem from="1608435008750" duration="2019000" />
+      <workItem from="1608441815952" duration="19000" />
+      <workItem from="1608520411184" duration="353000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="606" y="215" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607859336570">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="606" y="215" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1607859336570" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608520698630">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1608520698630" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1608441834042">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1608441834042" />
+  </component>
+</project>
