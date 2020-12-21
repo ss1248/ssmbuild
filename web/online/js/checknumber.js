@@ -3,7 +3,7 @@
  * 验证码
  * @param {Object} o 验证码长度
  */
-var code = "";
+var codedate= "";
 $.fn.code_Obj = function(o) {
     var _this = $(this);
     var options = {
@@ -32,6 +32,7 @@ $.fn.code_Obj = function(o) {
                 checkCode.text(code);
                 checkCode.attr('data-value', code);
             }
+            codedate=code;
         }
 
     };
