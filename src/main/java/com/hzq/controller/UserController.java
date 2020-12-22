@@ -124,12 +124,11 @@ public class UserController {
             }
             else {
                 session.setAttribute("user",user.getUsername());
-                model.addAttribute("secessful","登陆成功");
                 return "main";
             }
         }
         model.addAttribute("error","用户名或密码错误!");
-        return "login1";
+        return "login";
     }
     //注册检测接口
     @RequestMapping("/testRegister")

@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CSS3纸片折叠登录表单模板</title>
+    <title>聊天页面登录</title>
     <script src="${pageContext.request.contextPath}/online/js/jquery-1.8.2.min.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/online/css/style.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/online/js/jquery.form.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/online/js/checknumber.js"></script>
-<%--    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/statics/js/jquery-3.1.1.min.js"></script>--%>
+
 
 </head>
 <body>
@@ -51,6 +50,9 @@
                         <input  type="submit" class="btn btn--primary" value="登录">
                         <input  type="button" class="btn btn--primary" value="注册" onclick="window.location.href = '/user/register'"/>
                         <input  type="button" class="btn btn--primary" value="忘记密码" onclick="window.location.href = '/user/forget'"/>
+                    </div>
+                    <div style="text-align: center;color: red">
+                        <span>${error}</span>
                     </div>
                 </div>
 </form>

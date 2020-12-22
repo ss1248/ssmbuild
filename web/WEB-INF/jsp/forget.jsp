@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>注册新用户</title>
+    <title>聊天密码找回页面</title>
     <script src="/online/js/jquery-1.8.2.min.js"></script>
     <link rel="stylesheet" href="/online/css/style.css">
     <script type="text/javascript" src="/online/js/jquery.form.js"></script>

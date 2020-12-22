@@ -155,7 +155,7 @@ ws.onmessage= function(evt){
         //将服务端推送的消息进行展示
         var timer = time();
         var str="<ul class='messages-text-uls'><li class='messages-text-lis'>"
-            + "<img src='${pageContext.request.contextPath}/online/images/head2.jpg' class='img' style='top: 23px'>"
+            + "<img src='/online/images/head2.jpg' class='img' style='top: 23px'>"
             + "<p class = 'op'>" + res.message + "</p>" + "<span class='time' style='display: inline'>" + timer + "</span>" + "</li></ul>";
 
         if(toName==res.fromName){
@@ -201,7 +201,7 @@ $(".message-btn").click(function () {
     var timer = time();
     if (message != "undefined" && message != '') {
         var str = "<ul class='messages-text-uls'><li class='messages-text-lis'>"
-            + "<img src='${pageContext.request.contextPath}/online/images/head1.jpg' class='img' style='left: 512px;top: 23px'>"
+            + "<img src='/online/images/head1.jpg' class='img' style='left: 512px;top: 23px'>"
             + "<p>" + message + "</p>" + "<span class='time' style='display: inline'>" + timer + "</span>" + "</li></ul>";
         messages_text.append(str);
     } else {
