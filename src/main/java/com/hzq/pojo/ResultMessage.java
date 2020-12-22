@@ -1,5 +1,6 @@
 package com.hzq.pojo;
 
+
 public class ResultMessage {
     private boolean isSystem;
     private String fromName;

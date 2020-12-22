@@ -20,7 +20,7 @@ let toName;
 let userName;
 // $(".chatbar-contacts-uls").html(html);
 //点击按钮下拉
-$(".icon-lianxiren").on('click', function () {
+$(".icon-lianxiren").bind('click', function () {
     if ($(".chatbar").is(":visible")) {
         $(".chatbar").slideUp();
         $(".icon-box").removeClass('shadow');
@@ -60,7 +60,7 @@ function time(type) {
 }
 
 //搜索功能
-$('.search-text').on('keyup', function () {
+$('.search-text').bind('keyup', function () {
     var txt = $('.search-text').val();
     txt = txt.replace(/\s/g, '');
     $('.chatbar-contacts-uls li').each(function () {
@@ -108,7 +108,7 @@ $(".icon-ren1").click(function () {
 //侯雨辰添加
 
 $.ajax({
-    url:"getUsername",
+    url:"/user/getUsername",
     success:function (res) {
         userName=res;
     }
@@ -117,7 +117,7 @@ $.ajax({
 var ws = null;
 //判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
-    ws = new WebSocket("ws://localhost:8080/chat");
+    ws = new WebSocket("ws://localhost:8888/chat");
 }
 else {
     alert('当前浏览器 Not support websocket')

@@ -1,44 +1,37 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Seriter
-  Date: 2020/12/19
-  Time: 22:18
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" type="text/css" href="demo.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/online/css/demo.css" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>聊天页面实现</title>
-    <link rel="stylesheet" href="css/demo.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/online/css/demo.css">
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2274543_i5qzpmolf1.css">
 </head>
-<body>
-<div style="background:#0bc8f2;position: absolute;right: 1233px;height: 700px;width: 94px;top: 50px">
-    <img src="images/head3.jpg" style="height: 70px;width: 70px;margin-left: 12px;margin-top: 30px" id="heading">
+<body style="color: #6d929c">
+<div style="background:#8eccd9;position: absolute;right: 1233px;height: 700px;width: 94px;top: 50px">
+    <img src="${pageContext.request.contextPath}/online/images/head3.jpg" style="height: 70px;width: 70px;margin-left: 12px;margin-top: 30px" id="heading">
     <div class="icon-box">
         <i class="iconfont icon-xiugaiziliao"
-           style="color: antiquewhite;font-size: 30px;left: 30px;top: 66px;position: relative" id="changeme"
+           style="color: black;font-size: 30px;left: 30px;top: 66px;position: relative" id="changeme"
            title="change-message"></i>
     </div>
     <div class="icon-box">
         <i class="iconfont icon-lianxiren"
-           style="color: antiquewhite;;font-size: 30px;left: 30px;top: 106px;position: relative" title="chat"></i>
+           style="color: black;font-size: 30px;left: 30px;top: 106px;position: relative" title="chat"></i>
     </div>
     <div class="icon-box">
         <i class="iconfont icon-xiaoxi"
-           style="font-size: 30px;left: 30px;top: 146px;position: relative;color: antiquewhite" id="xiaoxi"
+           style="font-size: 30px;left: 30px;top: 146px;position: relative;color: black" id="xiaoxi"
            title="message"></i>
     </div>
     <div class="icon-box">
         <i class="iconfont icon-tianjia"
-           style="color: antiquewhite;font-size: 30px;left: 30px;top: 176px;position: relative" id="add"
+           style="color: black;font-size: 30px;left: 30px;top: 176px;position: relative" id="add"
            title="add-friends"></i>
     </div>
 </div>
-<img src="bgp/inbg.gif" style="position: relative;top: 50px;left: 474px;height: 700px;width: 700px;background-color:#0bc8f2 ">
+<%--<img src="${pageContext.request.contextPath}/online/images/inbg.gif" style="position: relative;top: 50px;left: 474px;height: 700px;width: 700px;background-color:#89b9b2">--%>
 <div class="chatbar">
     <div class="chatbar-box">
         <div class="chatbar-contacts">
@@ -88,7 +81,7 @@
         <div class="Content-Main">
             <form action="" method="post" class="form-userInfo">
                 <p>
-                    <img src="images/head3.jpg"
+                    <img src="${pageContext.request.contextPath}/online/images/head3.jpg"
                          style="width: 70px;height: 70px;margin-top: 40px;margin-left: 40px;top: 0px;position: relative;">
                     <span style="margin-top: 18px;margin-left: 30px;position: relative;top: -50px;">用户名:</span>
                     <input type="text" name="name" placeholder="你登录的用户名"
@@ -130,7 +123,7 @@
         <div class="Content-Other">
             <form action="" method="post" class="form-userInfo">
                 <p>
-                    <img src="images/head3.jpg"
+                    <img src="${pageContext.request.contextPath}/online/images/head3.jpg"
                          style="width: 70px;height: 70px;margin-top: 40px;margin-left: 40px;top: 0px;position: relative;">
                     <span style="margin-top: 18px;margin-left: 30px;position: relative;top: -50px;">用户名:</span>
                     <input type="text" name="name" placeholder="好友的用户名"
@@ -161,8 +154,11 @@
             </form>
         </div>
     </div>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/com/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/com/js/demo.js"></script>
+    <%--    <script type="text/javascript" src="<%=request.getContextPath()%>/com/js/jquery.min1.js"></script>--%>
+    <%--    <script type="text/javascript" src="<%=request.getContextPath()%>/com/js/demo1.js"></script>--%>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/online/js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/online/js/demo.js"></script>
 </div>
 </body>
 </html>
+

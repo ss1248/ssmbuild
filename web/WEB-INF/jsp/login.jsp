@@ -49,7 +49,7 @@
 <%--                    </div>--%>
                     <div class="btn-group">
                         <input  type="submit" class="btn btn--primary" value="登录">
-                        <input  type="button" class="btn btn--primary" value="注册" onclick="window.location.href = '/user/register'"/>
+                        <input  type="button" class="btn btn--primary" value="注册" onclick="location.href='/user/register'"/>
                         <input  type="button" class="btn btn--primary" value="忘记密码" onclick="window.location.href = '/user/forget'"/>
                     </div>
                 </div>
