@@ -20,7 +20,7 @@ let toName;
 let userName;
 // $(".chatbar-contacts-uls").html(html);
 //点击按钮下拉
-$(".icon-lianxiren").on('click', function () {
+$(".icon-lianxiren").bind('click', function () {
     if ($(".chatbar").is(":visible")) {
         $(".chatbar").slideUp();
         $(".icon-box").removeClass('shadow');
@@ -60,7 +60,7 @@ function time(type) {
 }
 
 //搜索功能
-$('.search-text').on('keyup', function () {
+$('.search-text').bind('keyup', function () {
     var txt = $('.search-text').val();
     txt = txt.replace(/\s/g, '');
     $('.chatbar-contacts-uls li').each(function () {
@@ -106,9 +106,9 @@ $(".icon-ren1").click(function () {
 });
 
 //侯雨辰添加
-
+$(function (){
 $.ajax({
-    url:"getUsername",
+    url:"/user/getUserName",
     success:function (res) {
         userName=res;
     }
@@ -117,7 +117,7 @@ $.ajax({
 var ws = null;
 //判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
-    ws = new WebSocket("ws://localhost:8080/chat");
+    ws = new WebSocket("ws://localhost:8888/chat");
 }
 else {
     alert('当前浏览器 Not support websocket')
@@ -155,7 +155,7 @@ ws.onmessage= function(evt){
         //将服务端推送的消息进行展示
         var timer = time();
         var str="<ul class='messages-text-uls'><li class='messages-text-lis'>"
-            + "<img src='././//images//head2.jpg' class='img' style='top: 23px'>"
+            + "<img src='${pageContext.request.contextPath}/online/images/head2.jpg' class='img' style='top: 23px'>"
             + "<p class = 'op'>" + res.message + "</p>" + "<span class='time' style='display: inline'>" + timer + "</span>" + "</li></ul>";
 
         if(toName==res.fromName){
@@ -201,7 +201,7 @@ $(".message-btn").click(function () {
     var timer = time();
     if (message != "undefined" && message != '') {
         var str = "<ul class='messages-text-uls'><li class='messages-text-lis'>"
-            + "<img src='././//images//head1.jpg' class='img' style='left: 512px;top: 23px'>"
+            + "<img src='${pageContext.request.contextPath}/online/images/head1.jpg' class='img' style='left: 512px;top: 23px'>"
             + "<p>" + message + "</p>" + "<span class='time' style='display: inline'>" + timer + "</span>" + "</li></ul>";
         messages_text.append(str);
     } else {
@@ -220,4 +220,5 @@ $(".message-btn").click(function () {
     //发送数据给服务端
     ws.send(JSON.stringify(json));
 
+});
 });

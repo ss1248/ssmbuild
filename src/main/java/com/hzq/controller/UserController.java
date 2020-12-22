@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,9 +103,18 @@ public class UserController {
     public String forget(){
         return "forget";
     }
+
+    //返回用户名
+    @RequestMapping("/getUserName")
+    @ResponseBody
+    public String getUserName(HttpSession session){
+        String username=(String)session.getAttribute("user");
+        return username;
+    }
+
     //登录检测接口
     @RequestMapping("/testLogin")
-    public String login(User user, Model model){
+    public String login(User user, Model model, HttpSession session){
         System.out.println(user);
         for (User user1 : userService.queryAllUser()) {
             boolean flag1 = user.getUsername().equals(user1.getUsername());
@@ -112,8 +123,9 @@ public class UserController {
                 continue;
             }
             else {
+                session.setAttribute("user",user.getUsername());
                 model.addAttribute("secessful","登陆成功");
-                return "login2";
+                return "main";
             }
         }
         model.addAttribute("error","用户名或密码错误!");

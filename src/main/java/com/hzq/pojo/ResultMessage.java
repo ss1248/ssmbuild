@@ -1,15 +1,13 @@
 package com.hzq.pojo;
 
 public class ResultMessage {
+    //服务端给客户端发送的数据
     private boolean isSystem;
     private String fromName;
-    private Object message;
-
-    public ResultMessage() {
-    }
+    private  Object message;
 
     public boolean getIsSystem() {
-        return this.isSystem;
+        return isSystem;
     }
 
     public void setISSystem(boolean isSystem) {
@@ -17,7 +15,7 @@ public class ResultMessage {
     }
 
     public String getFromName() {
-        return this.fromName;
+        return fromName;
     }
 
     public void setFromName(String fromName) {
@@ -25,7 +23,7 @@ public class ResultMessage {
     }
 
     public Object getMessage() {
-        return this.message;
+        return message;
     }
 
     public void setMessage(Object message) {
