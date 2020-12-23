@@ -1,5 +1,6 @@
 package com.hzq.pojo;
 
+
 public class ResultMessage {
     //服务端给客户端发送的数据
     private boolean isSystem;
