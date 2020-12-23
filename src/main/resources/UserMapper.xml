@@ -5,17 +5,17 @@
 <mapper namespace="com.hzq.dao.UserMapper">
     
     <insert id="addUser" parameterType="User">
-        insert into chatonline.user (username,password)
+        insert into onlinechat.user (username,password)
         values (#{username},#{password});
     </insert>
 
     <delete id="deleteUserById" parameterType="int">
-        delete from chatonline.user
+        delete from onlinechat.user
         where id=#{id}
     </delete>
     
     <update id="updateUser" parameterType="User">
-        update chatonline.user
+        update onlinechat.user
         set username=#{username},password=#{password},
         name=#{name},birthday=#{birthday},tel=#{tel},
         email=#{email},instructions=#{instructions},
@@ -24,16 +24,16 @@
     </update>
 
     <select id="queryUserById" resultType="User">
-        select * from chatonline.user
+        select * from onlinechat.user
         where id = #{id}
     </select>
 
     <select id="queryAllUser" resultType="User">
-        select * from chatonline.user
+        select * from onlinechat.user
     </select>
     
     <select id="queryUserByName" resultType="User">
-        select * from chatonline.user where username=#{username}
+        select * from onlinechat.user where username=#{username}
     </select>
 
 </mapper>
