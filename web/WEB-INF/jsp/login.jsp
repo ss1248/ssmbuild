@@ -15,7 +15,7 @@
     <div class="content">
         <div id="large-header" class="large-header">
             <canvas id="demo-canvas"></canvas>
-            <form class="form" autocomplete="off" action="${pageContext.request.contextPath}/user/testLogin"
+            <form class="form" autocomplete="off" action="${pageContext.request.contextPath}/user/testLogin" method="post"
                   style="position: absolute;top: 80px;left: 625px;">
                 <div class="form-inner">
                     <h2 align="center">用户登录</h2>

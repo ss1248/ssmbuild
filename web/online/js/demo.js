@@ -98,8 +98,29 @@ document.getElementById("alert_time").innerText = time()
 $("#heading").hover(function () {
     $(".Content-Main").slideToggle();
 });
+//点击信息显示按钮
 $(".icon-xiugaiziliao").click(function () {
     $(".Content-Main").slideToggle();
+    //显示登录用户数据
+    $.ajax({
+        url: "/user/findOneUser",
+        success:function (res){
+            console.log(res);
+            //将Json对象转为Json字符串
+            var v= JSON.parse(res);
+            console.log(v);
+
+            $("#username").val(v.username);
+            $("#name").val(v.name);
+            $("#birthday").val(v.birthday);
+            $("#email").val(v.email);
+            $("#tel").val(v.tel);
+            $("#message").val(v.instructions);
+        },
+        error:function (err){
+            console.log(err);
+        }
+    })
 });
 $(".icon-ren1").click(function () {
     $(".Content-Other").slideToggle();
@@ -111,6 +132,7 @@ $.ajax({
     url:"/user/getUserName",
     success:function (res) {
         userName=res;
+        $("#chatWith").html(userName);
     }
 })
 //创建websocket对象

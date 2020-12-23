@@ -1,7 +1,10 @@
 package com.hzq.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzq.pojo.User;
 import com.hzq.service.UserService;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -136,26 +140,51 @@ public class UserController {
         for (User user1 : userService.queryAllUser()) {
             if (user.getUsername().equals(user1.getUsername())) {
                 model.addAttribute("error","该用户名已被注册!");
-                //return "register2";
-                return "register1";
+                return "register";
             }else {
                 continue;
             }
         }
         if(user.getPassword().length()<6){
             model.addAttribute("error","密码需大于等于6位");
-            //return "register1";
-            return "register1";
+            return "register";
         }else if(!(user.getPassword().equals(request.getParameter("password2")))){
             model.addAttribute("error","两次密码不一致!");
-            //return "register1";
-            return "register1";
+            return "register";
         }
+        Date  date = new Date();
+        user.setCreat_at(date);
         userService.addUser(user);
-        return "redirect:/";
 
+        //打印出用户信息
+        System.out.println(user);
+        return "redirect:/";
     }
 
+    //修改个人信息
+    @RequestMapping("/remain")
+    public String remainPerMess(User user,HttpSession session){
+        System.out.println(session.getAttribute("user"));
+        System.out.println(user);
+        userService.updateUser(user);
+        return "main";
+    }
 
+    //通过jason查询单个用户
+    @RequestMapping("/findOneUser")
+    @ResponseBody
+    public String findOneUser(HttpSession session) throws JsonProcessingException {
+        //创建一个jackson的对象映射器，用来解析数据
+        ObjectMapper mapper = new ObjectMapper();
+        String username = (String) session.getAttribute("user");
+        //创建一个对象
+        User user= userService.queryUserByName(username);
+        System.out.println("###");
+        //将我们的对象解析成为json格式
+        String str = mapper.writeValueAsString(user);
+        System.out.println(str);
+        /*如何将一个类封装到Jason中*/
+        return str;
+    }
 
 }
