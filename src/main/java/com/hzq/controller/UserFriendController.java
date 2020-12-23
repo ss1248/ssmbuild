@@ -1,13 +1,20 @@
 package com.hzq.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzq.pojo.User;
 import com.hzq.pojo.UserFriend;
 import com.hzq.service.UserFriendService;
+import com.hzq.service.UserService;
+import com.hzq.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +24,9 @@ public class UserFriendController {
     @Autowired
     @Qualifier("UserFriendServiceImpl")
     private UserFriendService userFriendService;
+    @Autowired
+    @Qualifier("UserServiceImpl")
+    private UserService userService;
 
     @RequestMapping("/allFriend")
     public String list(Model model){
@@ -77,5 +87,28 @@ public class UserFriendController {
 
         model.addAttribute("list", friendList);
         return "allFriend";
+    }
+
+    @RequestMapping("/queryUser")
+    @ResponseBody
+    public String queryUser(String friendName) throws JsonProcessingException {
+        System.out.println(friendName);
+        System.out.println("####");
+
+//        UserServiceImpl userService=new UserServiceImpl();
+        User user = userService.queryUserByName(friendName);
+
+        System.out.println(user);
+        List<User> userList = new ArrayList<User>();
+        userList.add(user);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        if(user == null){
+            userList = userService.queryAllUser();
+        }
+        String v = mapper.writeValueAsString(userList);
+        System.out.println(v);
+        return v;
     }
 }

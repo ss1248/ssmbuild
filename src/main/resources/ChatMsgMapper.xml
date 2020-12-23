@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hzq.dao.ChatMsgMapper">
+
+    <insert id="insertChatMsg" parameterType="ChatMsg">
+        insert into onlinechat.chatmsg (sendUserName,toUserName,msg,isSend)
+        values (#{sendUserName},#{toUserName},#{msg},#{isSend});
+    </insert>
+
+    <delete id="deleteChatMsgByName" parameterType="int">
+        delete from onlinechat.chatmsg
+        where sendUserName = #{sendUserName} and toUserName = #{toUserName}
+    </delete>
+    <select id="searchChatMsg" resultType="ChatMsg">
+        select * from onlinechat.chatmsg
+        where sendUserName = #{sendUserName} and toUserName = #{toUserName}
+    </select>
+    <delete id="deleteChatMsgBySendUserName" parameterType="int">
+        delete from onlinechat.chatmsg
+        where sendUserName = #{sendUserName}
+    </delete>
+    <delete id="deleteChatMsgByToUserName" parameterType="int">
+        delete from onlinechat.chatmsg
+        where toUserName = #{toUserName}
+    </delete>
+
+
+</mapper>

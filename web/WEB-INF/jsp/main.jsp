@@ -72,7 +72,7 @@
             </div>
             <%--聊天框消息发送区--%>
             <div class="messages-box">
-                <textarea class="messages-content" name="" id="" cols="30" rows="10"></textarea>
+                <textarea class="messages-content" name="" id="send" cols="30" rows="10"></textarea>
                 <input class="message-btn" type="button" value="发送" id="message-btn" onclick="sendmessage()">
             </div>
         </div>
@@ -132,9 +132,9 @@
         <div id="friend-search">
             <div style="top: 20px">
                 <i class="iconfont" style="font-size: 25px;color: #0073c6;margin-left: 15px">&#xe651;</i>
-                <input type="text" class="search-text" placeholder="请输入要搜索的联系人"
+                <input type="text" id="findArea" class="search-text" placeholder="请输入要搜索的联系人"
                        style="margin-left: 5px;margin-bottom: 10px;height: 35px;margin-top: 15px;" size="25">
-                <button type="button">搜索</button>
+                <button id="find" type="button">搜索</button>
                 <hr>
             </div>
         </div>

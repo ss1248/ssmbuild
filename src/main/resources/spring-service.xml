@@ -29,6 +29,9 @@
     <bean id="ImpressionServiceImpl" class="com.hzq.service.ImpressionServiceImpl">
         <property name="impressionMapper" ref="impressionMapper"/>
     </bean>
+    <bean id="ChatMsgServiceImpl" class="com.hzq.service.ChatMsgServiceImpl">
+        <property name="chatMsgMapper" ref="chatMsgMapper"/>
+    </bean>
 
     <!--3. 声明式事务配置-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

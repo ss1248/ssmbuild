@@ -60,20 +60,145 @@ function time(type) {
     return time;
 }
 
-//搜索功能
-$('.search-text').bind('keyup', function () {
-    var txt = $('.search-text').val();
-    txt = txt.replace(/\s/g, '');
-    $('.chatbar-contacts-uls li').each(function () {
-        if (!$(this).is(':contains(' + txt + ')')) {
-            $(this).hide();
-        } else {
-            $(this).show();
-        }
-    });
-    return false;
-});
 
+// //搜索功能
+// $('.search-text').bind('keyup', function () {
+//     var txt = $('.search-text').val();
+//
+//     txt = txt.replace(/\s/g, '');
+//     $('.chatbar-contacts-uls li').each(function () {
+//         if (!$(this).is(':contains(' + txt + ')')) {
+//             $(this).hide();
+//         } else {
+//             $(this).show();
+//         }
+//     });
+//     return false;
+// });
+
+
+//添加好友搜索功能
+$("#find").click(function (){
+    var name =$("#findArea").val();
+    $.ajax({
+        type:'post',
+        // async:false,
+        url:"/friend/queryUser",//后端取值接口，给搜索账号（name），返回搜索用户信息
+        data:{'friendName':name},
+        success:function (data){
+            //前端片拼接
+            // $("#findArea").val("");
+            console.log(data);
+
+        },
+        error(error){
+            console.log(error);
+        }
+    })
+})
+
+//点击添加好友按钮,获得显示用户的账号name
+//
+$("#").click(function (name){
+    $.ajax({
+        url:'',//
+        data:{'fromUserName':userName,"toUseName":name},
+        success:function (data){
+            //成功发送验证消息
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+})
+
+//点击消息发送按钮，将消息存入数据库
+$("#send").click(function (){
+    var msg = $("#send").val();
+    $.ajax({
+        url:'',//前端传：发送账号，接受账号，消息内容，存入数据库
+        data:{'fromUserName':userName,"toUseName":toName,'msg':msg},
+        success:function (data){
+            console.log();
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+})
+
+//点击好友列表消息历史记录按钮，显示消息记录
+$("#").click(function (){
+    $.ajax({
+        url:'',//前端传：发送账号，接受账号，消息内容，存入数据库
+        data:{'fromUserName':userName,"toUseName":toName},
+        success:function (data){
+            console.log();
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+})
+
+//点击消息，显示好友请求
+$("#send").click(function (){
+    $.ajax({
+        url:'',//前端传：用户账号,返回所有消息，显示在消息页面上
+        data:{'toUserName':userName},
+        success:function (data){
+            //将返回的消息显示在列表
+            console.log();
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+})
+//点击同意好友请求
+$("#").click(function (){
+    var msg = $("#friendname").val();
+    $.ajax({
+        url:'',//前端传,好友请求账号，好友接受账号，将好友关系存入数据库存入数据库
+        data:{'fromUserName':userName,"toUseName":name},
+        success:function (data){
+            console.log();
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+})
+
+//拒绝好友请求
+$("#").click(function (){
+    var msg = $("#send").val();
+    $.ajax({
+        url:'',//前端传：发送账号，接受账号，将数据库中好友请求删除
+        data:{'fromUserName':userName,"toUseName":name},
+        success:function (data){
+            console.log();
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+})
+//下载好友
+$("#send").click(function (){
+    var msg = $("#send").val();
+    $.ajax({
+        url:'',//前端传：发送账号，接受账号，消息内容，存入数据库
+        data:{'fromUserName':userName,"toUseName":name,'msg':msg},
+        success:function (data){
+            console.log();
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+})
+//点击好友
 var count = 0;
 var div = document.getElementById("messagemanage");
 var div1 = document.getElementById("friend-search");
@@ -86,6 +211,7 @@ bbb.onclick = function () {
     if (count % 2 === 0)
         div.style.visibility = "hidden";
 }
+
 ccc.onclick = function () {
     count++;
     if (count % 2 === 1)
@@ -111,7 +237,6 @@ $(".icon-xiugaiziliao").click(function () {
             //将Json对象转为Json字符串
             var v= JSON.parse(res);
             console.log(v);
-
             $("#username").val(v.username);
             $("#name").val(v.name);
             $("#birthday").val(v.birthday);
@@ -145,14 +270,15 @@ function remainFriendView(){
             $("#birthday1").val(v.birthday);
             $("#email1").val(v.email);
             $("#tel1").val(v.tel);
-
-
         },
         error:function (err){
             console.log(err);
         }
     })
 }
+
+
+
 
 //侯雨辰添加
 $(function (){
@@ -194,6 +320,26 @@ ws.onmessage= function(evt){
         //是系统消息
         //好友列表展示
         var userliststr="";
+
+
+
+
+        //过滤非好友用户
+        $.ajax({
+            url:'',//返回当前用户的所有好友，判断上线用户是否是当前用户好友
+            data:{'':userName},
+            success:function (data){
+                for(var i=0;i=data.length;i++){
+
+                }
+            },
+            error:function (){
+
+            }
+
+        })
+
+
         for(var name of names){
             if(name != userName) {
                 userliststr += "<li  onclick='showChat(\"" + name + "\")'>" + "<i class='iconfont icon-ren1' title='好友资料'></i>" + "<p>" + name+ "</p>" + "<i class='iconfont icon-shanchuhaoyou1' title='删除好友'style='margin-left: 210px;'></i>"+ "</li>";
@@ -276,3 +422,4 @@ $(".message-btn").click(function () {
 
 });
 });
+
