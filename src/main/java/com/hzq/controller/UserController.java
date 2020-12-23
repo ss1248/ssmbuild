@@ -180,7 +180,7 @@ public class UserController {
         return "main";
     }
 
-    //通过jason查询单个用户
+    //通过json查询单个用户
     @RequestMapping("/findOneUser")
     @ResponseBody
     public String findOneUser(HttpSession session) throws JsonProcessingException {
@@ -196,5 +196,18 @@ public class UserController {
         /*如何将一个类封装到Jason中*/
         return str;
     }
+
+    //通过json查询好友信息
+    @RequestMapping("/findFriendMsg")
+    @ResponseBody
+    public String findFriendMsg(String friendName) throws JsonProcessingException {
+        System.out.println("好友名称:"+friendName);
+        User user = userService.queryUserByName(friendName);
+        ObjectMapper mapper = new ObjectMapper();
+        String str = mapper.writeValueAsString(user);
+        System.out.println(str);
+        return str;
+    }
+
 
 }

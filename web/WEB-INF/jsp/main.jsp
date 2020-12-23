@@ -38,7 +38,7 @@
     </div>
     <%--退出按钮--%>
     <div class="icon-box">
-        <i class="iconfont icon-guanji1"
+        <i class="iconfont icon-close"
            style="color: black;font-size: 30px;left: 30px;top: 399px;position: relative" id="shutdown"
            title="add-friends"></i>
     </div>
@@ -47,6 +47,7 @@
 <img src="<%=request.getContextPath()%>/online/images/inbg.gif" style="position: relative;top: 50px;left: 474px;height: 700px;width: 700px;background-color:#89b9b2">
 <div class="chatbar">
     <div class="chatbar-box">
+        <%--在线用户--%>
         <div class="chatbar-contacts">
             <div class="contacts-search-box">
                 <i class="iconfont icon-icon-"></i>
@@ -55,12 +56,14 @@
             <ul class="chatbar-contacts-uls" id="lists">
             </ul>
         </div>
+        <%--聊天框--%>
         <div class="chatbar-messages">
+            <%--聊天框头部--%>
             <div class="messages-title" >
                 <i class="iconfont icon-ren1" ></i>
                 <h4 id="chatWith">黄小小</h4>
             </div>
-            <%--聊天框用户--%>
+            <%--聊天框消息发送区--%>
             <div class="messages-text" id="messages-text">
                 <ul class="messages-text-uls">
                     <li class="messages-text-lis">
@@ -91,7 +94,7 @@
             </div>
         </div>
 
-        <%--个人信息修改，未设置返回值--%>
+        <%--个人信息修改，完成数据库前后端交汇--%>
         <div class="Content-Main">
             <form action="${pageContext.request.contextPath}/user/remain" method="post" class="form-userInfo">
                 <p>
@@ -125,6 +128,7 @@
                     </label>
             </form>
         </div>
+
         <div id="friend-search">
             <div style="top: 20px">
                 <i class="iconfont" style="font-size: 25px;color: #0073c6;margin-left: 15px">&#xe651;</i>
@@ -134,37 +138,39 @@
                 <hr>
             </div>
         </div>
-        <%--个人信息修改：未设置返回值--%>
+
+
+        <%--好友信息：未设置返回值--%>
         <div class="Content-Other">
             <form action="" method="post" class="form-userInfo">
                 <p>
-                    <img src="/online/images/head3.jpg"
+                    <img src="/online/images/head3.jpg" alt="加载中......"
                          style="width: 70px;height: 70px;margin-top: 40px;margin-left: 40px;top: 0px;position: relative;">
                     <span style="margin-top: 18px;margin-left: 30px;position: relative;top: -50px;">用户名:</span>
-                    <input type="text" name="username" placeholder="好友的用户名"
-                           style="position: relative;margin-left: 136px;top: -40px;width: 200px">
+                    <input type="text" name="username" id="username1" placeholder="好友的用户名"
+                           style="position: relative;margin-left: 136px;top: -40px;width: 200px" readonly>
                     <label style="margin-top: 0px;">
                         <span>姓&emsp;&emsp;名：</span>
-                        <input type="text" name="name" placeholder="好友的真实姓名！">
+                        <input type="text" name="name" id="name1" placeholder="好友的真实姓名！" readonly>
                     </label>
                     <label>
                         <span>生&emsp;&emsp;日：</span>
-                        <input type="text" name="birthday" placeholder="填写您的出生日期！">
+                        <input type="text" name="birthday" id="birthday1" placeholder="填写您的出生日期！" readonly>
                     </label>
                     <label>
                         <span>电子邮件：</span>
-                        <input type="email" name="email" placeholder="@.com">
+                        <input type="email" name="email"id="email1" placeholder="@.com" readonly>
                     </label>
                     <label>
                         <span>手机号码：</span>
-                        <input type="text" name="tel" placeholder="好友的电话号码!">
+                        <input type="text" name="tel" id="tel1" placeholder="好友的电话号码!" readonly>
                     </label>
                     <label>
-                        <span>个人介绍：</span>
-                        <textarea id="evaluate" name="instructions" placeholder="好友评价！"></textarea>
+                        <span>好友评价：</span>
+                        <textarea id="evaluate" name="friendView" placeholder="好友评价！"></textarea>
                     </label>
                     <label>
-                        <input type="button" class="button" value="修改好友评价" style="position: relative;margin-left: 140px">
+                        <input type="button" class="button" value="修改好友评价" onclick="remainFriendView()" style="position: relative;margin-left: 140px">
                     </label>
             </form>
         </div>

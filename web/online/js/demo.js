@@ -16,8 +16,8 @@
 // for (var i = 0; i < data.length; i++) {
 //     html += "<li>" + "<i class='iconfont'>&#xe752;</i>" + "<p>" + data[i].name + "</p>" + "</li>";
 // }
-let toName;
-let userName;
+let toName; //消息接受者账号
+let userName;   //发送消息者的账号
 // $(".chatbar-contacts-uls").html(html);
 //点击按钮下拉
 $(".icon-lianxiren").bind('click', function () {
@@ -29,6 +29,7 @@ $(".icon-lianxiren").bind('click', function () {
         $(".icon-box").addClass('' + '' + 'shadow');
     }
 });
+
 //点击头像事件
 function showChat(name){
     toName=name;
@@ -98,6 +99,7 @@ document.getElementById("alert_time").innerText = time()
 $("#heading").hover(function () {
     $(".Content-Main").slideToggle();
 });
+
 //点击信息显示按钮
 $(".icon-xiugaiziliao").click(function () {
     $(".Content-Main").slideToggle();
@@ -122,9 +124,35 @@ $(".icon-xiugaiziliao").click(function () {
         }
     })
 });
+
+//点击聊天区好友头像弹出好友个人信息界面
 $(".icon-ren1").click(function () {
     $(".Content-Other").slideToggle();
+    //显示好友信息，可填写评价
+    remainFriendView();
+
 });
+
+//点击修改好友评价
+function remainFriendView(){
+    $.ajax({
+        url:"/user/findFriendMsg",
+        data:{'friendName':toName},
+        success:function (res){
+            var v = JSON.parse(res);
+            $("#username1").val(v.username);
+            $("#name1").val(v.name);
+            $("#birthday1").val(v.birthday);
+            $("#email1").val(v.email);
+            $("#tel1").val(v.tel);
+
+
+        },
+        error:function (err){
+            console.log(err);
+        }
+    })
+}
 
 //侯雨辰添加
 $(function (){
@@ -132,6 +160,7 @@ $.ajax({
     url:"/user/getUserName",
     success:function (res) {
         userName=res;
+        //聊天窗口显示聊天对象
         $("#chatWith").html(userName);
     }
 })
@@ -190,6 +219,7 @@ ws.onmessage= function(evt){
         sessionStorage.setItem(res.fromName,str);
     }
 }
+//???
 $(".icon-shanchuhaoyou1").click(function () {
     doDel()});
 var list = document.getElementById('lists').getElementsByTagName("li");
@@ -216,6 +246,8 @@ function doDel() {
 ws.onclose=function(){
 
 }
+
+//点击发送按钮
 $(".message-btn").click(function () {
     var message = $('.messages-content').val();
     var messages_text = $(".messages-text");
