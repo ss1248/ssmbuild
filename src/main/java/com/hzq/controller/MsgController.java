@@ -22,10 +22,9 @@ public class MsgController {
     @RequestMapping("/getMsg")
     @ResponseBody
     public List<AddMsg> getMsg(String toUserName) {
-        System.out.println(toUserName);
+
         List<AddMsg> addMsgList = new ArrayList<AddMsg>();
         addMsgList = addMsgService.selectMsgByUserName(toUserName);
-        System.out.println(addMsgList);
         return addMsgList;
     }
 
@@ -34,9 +33,10 @@ public class MsgController {
 //        return  addMsgService.getMsgNum(toUserName);
 //    }
 
-    @RequestMapping("deleteMsg")
+    @RequestMapping("/deleteMsg")
     public List<AddMsg> deleteMsg(String fromUserName) {
         addMsgService.deleteMsg(fromUserName);
+        System.out.println("@");
         return null;
     }
 

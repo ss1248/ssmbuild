@@ -30,6 +30,7 @@ public class UserFriendController {
     private UserService userService;
 
 
+
     @RequestMapping("/addFriend1")
     @ResponseBody
     public String addFriends(String sendUserName,String toUserName){
@@ -100,4 +101,22 @@ public class UserFriendController {
         return userList;
 
     }
+
+    //测试上线用户是否是当前用户好友
+    @RequestMapping("/allFriend")
+    @ResponseBody
+    public String allFriend(String username,String currentUser){
+        //打印输入上线用户和当前用户
+        System.out.println("user:"+username+"\n"+currentUser);
+        UserFriend userFriend=userFriendService.queryFriendByName(username);
+        System.out.println(userFriend);
+        if(userFriend.getUserName().equals(currentUser)){
+            System.out.println("@@@");
+            return "true";
+        }else {
+            System.out.println("###");
+            return "false";
+        }
+    }
+
 }

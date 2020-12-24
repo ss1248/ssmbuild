@@ -6,10 +6,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ImpressionService {
-        List<UserImpression> selectImpressionByUserId(int toUserId);
 
-        boolean deleteImpression(@Param("fromUserId") int fromUserId);
+        List<UserImpression> selectImpressionByName(String toUserName);
 
-        boolean addImpression(int fromUserId, int toUserId, String msg);
+        boolean deleteImpression(@Param("fromUserName") String fromUserId);
+
+        boolean addImpression(UserImpression userImpression);
 
 }

@@ -18,22 +18,27 @@ public class ImpressionController {
     @Qualifier("ImpressionServiceImpl")
     private ImpressionService impressionService;
 
-    @RequestMapping("{touserId}/getImpression")
-    public List<UserImpression> getImpression(int toUserId) {
+    @RequestMapping("/getImpression")
+    public List<UserImpression> getImpression(String toUserName) {
         List<UserImpression> list = new ArrayList<UserImpression>();
-        list = impressionService.selectImpressionByUserId(toUserId);
+        list = impressionService.selectImpressionByName(toUserName);
         return list;
     }
-    @RequestMapping("{fromUserId}/deleteImpression")
-    public List<UserImpression> deleteImpression(int fromUserId) {
-        impressionService.deleteImpression(fromUserId);
+    @RequestMapping("/deleteImpression")
+    public List<UserImpression> deleteImpression(String fromUserName) {
+        impressionService.deleteImpression(fromUserName);
         return null;
     }
 
-    @RequestMapping("{touserId}/addImpression")
-    public List<UserImpression> addMsg(int fromUserId, int toUserId) {
-        String msg = "";
-       impressionService.addImpression(toUserId,fromUserId,msg);
+    @RequestMapping("/addImpression")
+    public List<UserImpression> addMsg(String fromUserName, String toUserName,String msg) {
+        System.out.println(fromUserName+"\n"+toUserName+"\n"+msg);
+        UserImpression impression = new UserImpression();
+        impression.setFromUserName(fromUserName);
+        impression.setToUserName(toUserName);
+        impression.setMsg(msg);
+        impressionService.addImpression(impression);
+        System.out.println("######");
         return null;
     }
 }

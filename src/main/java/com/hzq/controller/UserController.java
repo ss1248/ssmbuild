@@ -3,6 +3,9 @@ package com.hzq.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzq.pojo.User;
+import com.hzq.pojo.UserFriend;
+import com.hzq.pojo.UserImpression;
+import com.hzq.service.ImpressionService;
 import com.hzq.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +29,9 @@ public class UserController {
     @Qualifier("UserServiceImpl")
     private UserService userService;
 
+    @Autowired
+    @Qualifier("ImpressionServiceImpl")
+    private ImpressionService impressionService;
 
     //查询全部的用户，并且返回到一个用户展示界面
     @RequestMapping("/allUser")
@@ -196,11 +202,17 @@ public class UserController {
     //通过json查询好友信息
     @RequestMapping("/findFriendMsg")
     @ResponseBody
-    public String findFriendMsg(String friendName) throws JsonProcessingException {
-        User user = userService.queryUserByName(friendName);
+    public String findFriendMsg(String friendName,String userName) throws JsonProcessingException {
+        System.out.println(friendName+"  ##  "+userName);
+        User user;
+        if(friendName==null){
+            user = userService.queryUserByName(userName);
+        }else{
+            user=userService.queryUserByName(friendName);
+        }
         ObjectMapper mapper = new ObjectMapper();
         String str = mapper.writeValueAsString(user);
-
+        System.out.println(str);
         return str;
     }
 

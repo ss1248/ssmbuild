@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserImpression {
-    private int fromUserid;
-    private int toUserid;
+    private String fromUserName;
+    private String toUserName;
     private String msg;
 }

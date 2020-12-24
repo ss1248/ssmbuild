@@ -5,19 +5,17 @@
 <mapper namespace="com.hzq.dao.ImpressionMapper">
 
 
-
-    <select id="selectImpressionByUserName" resultType="UserImpression" parameterType="String">
-        select * from chatonline.userimpression
+    <select id="selectImpressionByName" resultType="UserImpression" parameterType="String">
+        select * from onlinechat.userimpression
         where toUserName=#{toUserName}
     </select>
 
     <insert id="addImpression" parameterType="UserImpression">
-        insert into chatonline.userimpression (toUserName,fromUserName,msg)
-            value (#{toUserName},#{fromUserName},#{msg})
+        insert into onlinechat.userimpression (toUserName,fromUserName,msg)
+            values (#{toUserName},#{fromUserName},#{msg})
     </insert>
     <delete id="deleteImpression" parameterType="String">
-        delete from chatonline.userimpression
+        delete from onlinechat.userimpression
         where fromUserName=#{fromUserName}
     </delete>
-
 </mapper>

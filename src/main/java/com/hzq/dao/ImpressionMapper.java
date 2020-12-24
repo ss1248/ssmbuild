@@ -7,7 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface ImpressionMapper {
-    List<UserImpression> selectImpressionByUserId(@Param("toUserId") int toUserId);
-    boolean deleteImpression(@Param("fromUserId") int fromUserId);
-    boolean addImpression(@Param("fromUserId")int fromUserId,@Param("toUserId")int toUserId,  @Param("msg")String msg);
+
+    List<UserImpression> selectImpressionByName(@Param("toUserName") String toUserName);
+
+
+    boolean deleteImpression(@Param("fromUserName") String fromUserName);
+
+
+    boolean addImpression(UserImpression userImpression);
 }

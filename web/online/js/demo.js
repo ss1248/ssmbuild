@@ -143,35 +143,6 @@ $("#").click(function (){
     })
 })
 
-//点击同意好友请求
-$("#").click(function (){
-    var msg = $("#friendname").val();
-    $.ajax({
-        url:'',//前端传,好友请求账号，好友接受账号，将好友关系存入数据库存入数据库
-        data:{'fromUserName':userName,"toUseName":name},
-        success:function (data){
-            console.log();
-        },
-        error:function (error){
-            console.log(error);
-        }
-    })
-})
-
-//拒绝好友请求
-$("#").click(function (){
-    var msg = $("#send").val();
-    $.ajax({
-        url:'',//前端传：发送账号，接受账号，将数据库中好友请求删除
-        data:{'fromUserName':userName,"toUseName":name},
-        success:function (data){
-            console.log();
-        },
-        error:function (error){
-            console.log(error);
-        }
-    })
-})
 
 //下载好友
 $("#send").click(function (){
@@ -255,7 +226,6 @@ function addAgree(fromUserName) {
         // data: data,
         success: function () {
            addRefuse(fromUserName);
-           getNotice(userName);
         }
     });
     //作用是完成添加好友后删除通知
@@ -269,10 +239,10 @@ function addRefuse(fromUserName) {
         data:{'fromUserName':fromUserName},
         // data: data,
         success: function () {
-            console.log("删除成功");
+            alert("删除成功");
         }
     });
-   getNotice(userName);
+
 }
 function getNotice(userName) {
     console.log(userName);
@@ -284,16 +254,9 @@ function getNotice(userName) {
         success: function (data) {
             console.log(data);
             for(var i=0;i<data.length;i++) {
-                $(".friends3").append("<li class='notice' id="+data[i].fromUserName+">\n" +
-                    "        <p class=\"username\">"+data[i].fromUserName+"</p>\n" +
-                    "        <p class=\"content\">"+data[i].msg+"</p>\n" +
-                    "        <p class=\"button\">\n" +
-                    "            <button class=\"am-btn am-btn-secondary\" onclick=\"addAgree("+"'"+data[i].fromUserName+"'"+")\">同意</button>\n" +
-                    "            <button class=\"am-btn am-btn-default\" onclick=\"addRefuse("+"'"+data[i].fromUserName+"'"+")\">拒绝</button>\n" +
-                    "        </p>\n" +
-                    "    </li>");
+                $(".friends3").append("<li ><p>您收到"+data[i].fromUserName+ "的好友请求</p><button class=\"fvbu\" onclick=\"addAgree("+"'"+data[i].fromUserName+"'"+")\">接受</button>"+
+                "<button class=\"fvbu\" onclick=\"addRefuse("+"'"+data[i].fromUserName+"'"+")\">拒绝</button></li>")
             }
-            $(".friends3").append("<li class=\"tip\">暂无更多消息</li>");
         }
     });
 }
@@ -308,7 +271,7 @@ function getNotice(userName) {
 
 
 
-//点击信息显示按钮wa
+//点击信息显示个人信息按钮
 //完成
 $(".icon-xiugaiziliao").click(function () {
     $(".Content-Main").slideToggle();
@@ -341,11 +304,11 @@ $(".icon-ren1").click(function () {
 
 });
 
-//点击修改好友评价
+//显示好友用户信息
 function remainFriendView(){
     $.ajax({
         url:"/user/findFriendMsg",
-        data:{'friendName':toName},
+        data:{'friendName':toName,"userName":userName},
         success:function (res){
             var v = JSON.parse(res);
             $("#username1").val(v.username);
@@ -354,14 +317,28 @@ function remainFriendView(){
             $("#email1").val(v.email);
             $("#tel1").val(v.tel);
             $("#evaluate").val(v.instructions);
+            $("#friendview").val()
         },
         error:function (err){
             console.log(err);
         }
     })
-
 }
 
+function addviews(){
+    var msg = $("#friendview").val();
+    $.ajax({
+        url:'/impression/addImpression',//将好友评价保存在数据库
+        data:{'fromUserName':userName,'toUserName':toName,'msg':msg},
+        success:function (){
+            remainFriendView();
+        },
+        error:function (error){
+            console.log(error);
+        }
+
+    })
+}
 
 
 
@@ -408,22 +385,27 @@ ws.onmessage= function(evt){
 
 
 
-/*
-        //过滤非好友用户
+    /*    //过滤非好友用户
         $.ajax({
-            url:'',//返回当前用户的所有好友，判断上线用户是否是当前用户好友
-            data:{'':userName},
+            url:'/friend/allFriend',//返回当前用户的所有好友，判断上线用户是否是当前用户好友
+            data:{'username':name,'currentUser':userName},
             success:function (data){
-                for(var i=0;i=data.length;i++){
-
+                console.log(data);
+                if(data=="true"){
+                    for(var name of names){
+                        if(name != userName) {
+                            userliststr += "<li  onclick='showChat(\"" + name + "\")'>" + "<i class='iconfont icon-ren1' title='好友资料'></i>" + "<p>" + name+ "</p>" + "<i class='iconfont icon-shanchuhaoyou1' title='删除好友'style='margin-left: 210px;'></i>"+ "</li>";
+                        }
+                    }
+                    //渲染好友列表
+                    $(".chatbar-contacts-uls").html(userliststr);
                 }
             },
-            error:function (){
-
+            error:function (error){
+                console.log(error);
             }
 
         })*/
-
 
         for(var name of names){
             if(name != userName) {
@@ -521,3 +503,25 @@ $(".message-btn").click(function () {
 });
 });
 
+
+//查询所有好友
+function getFriendList() {
+    var friendlist;
+    $.ajax({
+        type: 'post',
+        url: '/friend/allFriend',//查询所有好友
+        datatype:"json",
+        success: function (data) {
+            console.log(data);
+            friendlist = data;
+            for(let i in data)
+                console.log(data[i].friendName);
+            //for循环里多次调用函数，查好友具体信息
+        },
+        error:function (XMLHttpRequest) {
+            //打印错误信息
+            console.log(XMLHttpRequest.status);
+            console.log(XMLHttpRequest.readyState);
+        }
+    });
+}

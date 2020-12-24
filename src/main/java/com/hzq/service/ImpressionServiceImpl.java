@@ -12,17 +12,16 @@ public class ImpressionServiceImpl implements ImpressionService{
         this.impressionMapper=impressionMapper;
     }
 
-    public List<UserImpression> selectImpressionByUserId(int toUserId) {
-        return impressionMapper.selectImpressionByUserId(toUserId);
+    public List<UserImpression> selectImpressionByName(String toUserName) {
+        return impressionMapper.selectImpressionByName(toUserName);
     }
 
-    public boolean deleteImpression(int fromUserId) {
-        return impressionMapper.deleteImpression(fromUserId);
+    public boolean deleteImpression(String fromUserName) {
+        return impressionMapper.deleteImpression(fromUserName);
     }
 
-    public boolean addImpression(int fromUserId, int toUserId, String msg) {
-        return impressionMapper.addImpression(fromUserId,toUserId,msg);
+    public boolean addImpression(UserImpression userImpression) {
+        return impressionMapper.addImpression(userImpression);
     }
-
 
 }
