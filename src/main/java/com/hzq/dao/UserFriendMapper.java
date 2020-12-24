@@ -10,7 +10,7 @@ public interface UserFriendMapper {
 
     int addFriend(UserFriend userFriend);
 
-    String deleteFriend(@Param("userName")String userName,@Param("friendName")String friendName);
+    boolean deleteFriend(@Param("userName")String userName,@Param("friendName")String friendName);
 
     UserFriend queryFriendById(@Param("friendId") int friendId);
 

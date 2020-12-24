@@ -48,7 +48,8 @@
         <div class="chatbar-contacts">
             <div class="contacts-search-box">
                 <i class="iconfont icon-icon-"></i>
-                <input type="text" class="search-text" placeholder="请输入要搜索的联系人">
+                <input type="text" class="search-text" placeholder="请输入要搜索的联系人" style="width: 240px">
+                <button type="button">搜索</button>
             </div>
             <ul class="chatbar-contacts-uls" id="lists">
 
@@ -60,7 +61,6 @@
             <div class="messages-title">
                 <i class="iconfont icon-ren1"></i>
                 <h4 id="chatWith">黄小小</h4>
-                <input type="button" onclick="downloadMessage('111111')" value="下载按钮">
             <!-- 好友验证消息按钮-->
                 <button class="fvbu1" id="friendmsg">好友验证消息</button>
             </div>
@@ -75,6 +75,8 @@
             <div class="messages-box">
                 <textarea class="messages-content" name="" id="" cols="30" rows="10"></textarea>
                 <input class="message-btn" type="button" value="发送" id="message-btn" onclick="sendmessage()">
+                <input type="button" onclick="downloadMessage('111111')" value="下载按钮">
+                <input type="button" value="查看好友消息">
             </div>
         </div>
         <div id="messagemanage">
@@ -85,10 +87,7 @@
                         <div class="content">
                             <h3 class="title">消息记录</h3>
                             <div class="textcontent">
-
                                 文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容
-
-
                             </div>
                             <div class="detail"><span class="lookdetail">查看详情</span></div>
                         </div>
@@ -183,11 +182,9 @@
 <!--好友的介绍与评价-->
                         <span>个人介绍：</span>
                         <textarea id="evaluate" name="evaluate" placeholder="好友介绍" disabled></textarea>
-                        <span>好友评价：</span>
-                        <textarea style="margin-top: 20px" name="friendView" id="friendview"></textarea>
                     </label>
                     <label>
-                        <input type="button" class="button" onclick="addviews()" value="添加好友评价" style="position: relative;margin-left: 140px">
+                        <input type="button" class="button" value="查看好友评价" style="position: relative;margin-left: 140px" id="cfe">
                     </label>
             </form>
         </div>
@@ -214,8 +211,11 @@
 
         </ul>
     </div>
+        <div class="fevaluate">
+            <textarea class="evarea"></textarea>
+            <button class="evbt">添加好友评价</button>
+        </div>
 </div>
-
 <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/demo.js"></script>
 </body>

@@ -10,7 +10,7 @@
 
     <delete id="deleteFriend" parameterType="String">
         delete from onlinechat.userfriend
-        where userName = #{userName} and friendId = #{friendId} and friendName=#{friendName}
+        where userName = #{userName}  and friendName=#{friendName}
     </delete>
 
     <select id="queryFriendById" resultType="UserFriend">

@@ -36,13 +36,30 @@ $(".icon-lianxiren").bind('click', function () {
             var html="";
             for(var i=0;i<data.length;i++){
                 $("#lists").append("<li><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
-                    data[i].userName + "</p><i class='iconfont icon-shanchuhaoyou1' title='删除好友'style='margin-left: 210px;'></i>");
+                    data[i].friendName + "</p><i onclick='deletefriend("+data[i].friendName+")' class='iconfont icon-shanchuhaoyou1' id='deletfriend' title='删除好友'style='margin-left: 210px;'></i>");
             }
-
         }
     })
-
 });
+
+//点击删除好友事假，删除该与用户的好友关系
+function deletefriend(name){
+    $.ajax({
+        url:'/friend/deleteFriend',
+        data:{'userName':name,'friendName':userName},
+        success:function (data){
+            if(data=='OK')
+                console.log("删除好友成功");
+        },
+        error:function (){
+            console.log("删除好友失败");
+        }
+
+
+    })
+}
+
+
 
 //点击头像事件
 function showChat(name){
@@ -203,7 +220,9 @@ $("#heading").hover(function () {
 $("#chev").click(function () {
     $(".evaluate1").slideToggle();
 });
-
+$("#cfe").click(function () {
+    $(".fevaluate").slideToggle();
+});
 
 //点击好友验证消息按钮
 $(".fvbu1").click(function () {

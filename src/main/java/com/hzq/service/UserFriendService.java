@@ -9,7 +9,7 @@ public interface UserFriendService {
 
     int addFriend(UserFriend userFriend);
 
-    String deleteFriend(String sendUserName,String toUserName);
+    boolean deleteFriend(String userName,String friendName);
 
     UserFriend queryFriendById(int friendId);
 

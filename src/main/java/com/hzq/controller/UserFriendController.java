@@ -65,12 +65,15 @@ public class UserFriendController {
 
     //删除
     @RequestMapping("/deleteFriend")
-    public String deleteFriend(String sendUserName,String toUserName){
-        userFriendService.deleteFriend(sendUserName,toUserName);
-        userFriendService.deleteFriend(toUserName,sendUserName);
-        return null;
+    @ResponseBody
+    public String deleteFriend(String userName,String friendName){
+        System.out.println(userName);
+        System.out.println(friendName);
+        userFriendService.deleteFriend(userName,friendName);
+        userFriendService.deleteFriend(friendName,userName);
+        System.out.println("##");
+        return  "OK";
     }
-
 
 /*    @RequestMapping("queryFriendByName")
     public String queryFriendByName(String queryFriendName, Model model) {
@@ -109,6 +112,7 @@ public class UserFriendController {
         //输出所有用户
         System.out.println(currentUser);
         List<UserFriend> friendList = userFriendService.queryAllFriend(currentUser);
+
         return friendList;
     }
 }

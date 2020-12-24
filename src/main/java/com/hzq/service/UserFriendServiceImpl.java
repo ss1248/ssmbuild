@@ -19,9 +19,10 @@ public class UserFriendServiceImpl implements UserFriendService {
         return userFriendMapper.addFriend(userFriend);
     }
 
-    public String deleteFriend(String sendUserName, String toUserName) {
-        return userFriendMapper.deleteFriend(sendUserName,toUserName);
+    public boolean deleteFriend(String userName, String friendName) {
+        return userFriendMapper.deleteFriend(userName,friendName);
     }
+
     public UserFriend queryFriendById(int friendId){
         return userFriendMapper.queryFriendById(friendId);
     }
