@@ -8,7 +8,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserFriend {
-    private int friendid;
+    private int friendId;
     private String  userName;
     private String friendName;
+
+    public int setFriendId(int friendId) {
+        return this.friendId=friendId;
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,13 @@ public class MsgController {
     @Qualifier("AddMsgServiceImpl")
     private AddMsgService addMsgService;
 
-    @RequestMapping("{toUserName}/getMsg")
+    @RequestMapping("/getMsg")
+    @ResponseBody
     public List<AddMsg> getMsg(String toUserName) {
+        System.out.println(toUserName);
         List<AddMsg> addMsgList = new ArrayList<AddMsg>();
         addMsgList = addMsgService.selectMsgByUserName(toUserName);
+        System.out.println(addMsgList);
         return addMsgList;
     }
 
@@ -30,17 +34,24 @@ public class MsgController {
 //        return  addMsgService.getMsgNum(toUserName);
 //    }
 
-    @RequestMapping("{fromUserName}/deleteMsg")
+    @RequestMapping("deleteMsg")
     public List<AddMsg> deleteMsg(String fromUserName) {
         addMsgService.deleteMsg(fromUserName);
         return null;
     }
 
-    @RequestMapping("{toUserName}/addMsg")
-    public List<AddMsg> addMsg(String fromUserName, String toUserName) {
+    @RequestMapping("/addMsg")
+    @ResponseBody
+    public int addMsg(String fromUserName, String toUserName) {
+        System.out.println(fromUserName+"\n"+toUserName);
         String msg = "请求添加你为好友";
-        boolean bool =  addMsgService.addMsg(toUserName,fromUserName,msg);
-        return null;
+        AddMsg addMsg=new AddMsg();
+        addMsg.setFromUserName(fromUserName);
+        addMsg.setToUserName(toUserName);
+        addMsg.setMsg(msg);
+        System.out.println(addMsg);
+        addMsgService.addMsg(addMsg);
+        return 0;
     }
 
 }

@@ -6,18 +6,18 @@
 
 
 
-    <select id="selectImpressionByUserId" resultType="UserImpression" parameterType="String">
+    <select id="selectImpressionByUserName" resultType="UserImpression" parameterType="String">
         select * from chatonline.userimpression
-        where toUserId=#{toUserId}
+        where toUserName=#{toUserName}
     </select>
 
     <insert id="addImpression" parameterType="UserImpression">
-      insert into chatonline.userimpression (toUserId,fromUserId,msg)
-      value (#{toUserId},#{fromUserId},#{msg})
+        insert into chatonline.userimpression (toUserName,fromUserName,msg)
+            value (#{toUserName},#{fromUserName},#{msg})
     </insert>
     <delete id="deleteImpression" parameterType="String">
         delete from chatonline.userimpression
-        where fromUserId=#{fromUserId}
+        where fromUserName=#{fromUserName}
     </delete>
 
 </mapper>

@@ -15,13 +15,12 @@ public class UserFriendServiceImpl implements UserFriendService {
     }
 
 
-    public UserFriend addFriend(int userid,int friendId) {
-        return userFriendMapper.addFriend(userid,friendId);
+    public int addFriend(UserFriend userFriend) {
+        return userFriendMapper.addFriend(userFriend);
     }
 
-
-    public String deleteFriend(int userid,int friendId) {
-        return userFriendMapper.deleteFriend(userid,friendId);
+    public String deleteFriend(String sendUserName, String toUserName) {
+        return userFriendMapper.deleteFriend(sendUserName,toUserName);
     }
     public UserFriend queryFriendById(int friendId){
         return userFriendMapper.queryFriendById(friendId);
@@ -33,5 +32,4 @@ public class UserFriendServiceImpl implements UserFriendService {
     public List<UserFriend> queryAllFriend() {
         return userFriendMapper.queryAllFriend();
     }
-
 }

@@ -164,8 +164,6 @@ public class UserController {
     @RequestMapping("/remain")
     public String remainPerMess(User user,HttpSession session){
         //获得当前用户名
-        System.out.println(user);
-        System.out.println("@@@@");
         String username_temp= (String) session.getAttribute("user");
         //获得数据库中用户原来的信息
         User user1=userService.queryUserByName(username_temp);
@@ -175,7 +173,6 @@ public class UserController {
         user.setPassword(user1.getPassword());
         user.setHeadPortrait(user1.getHeadPortrait());
         session.setAttribute("user",user.getUsername());
-        System.out.println(user);
         //更新数据库用户信息
         userService.updateUser(user);
         return "main2";
@@ -190,10 +187,8 @@ public class UserController {
         String username = (String) session.getAttribute("user");
         //创建一个对象
         User user= userService.queryUserByName(username);
-        System.out.println("###");
         //将我们的对象解析成为json格式
         String str = mapper.writeValueAsString(user);
-        System.out.println(str);
         /*如何将一个类封装到Jason中*/
         return str;
     }
@@ -202,11 +197,10 @@ public class UserController {
     @RequestMapping("/findFriendMsg")
     @ResponseBody
     public String findFriendMsg(String friendName) throws JsonProcessingException {
-        System.out.println("好友名称:"+friendName);
         User user = userService.queryUserByName(friendName);
         ObjectMapper mapper = new ObjectMapper();
         String str = mapper.writeValueAsString(user);
-        System.out.println(str);
+
         return str;
     }
 

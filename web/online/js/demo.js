@@ -16,8 +16,8 @@
 // for (var i = 0; i < data.length; i++) {
 //     html += "<li>" + "<i class='iconfont'>&#xe752;</i>" + "<p>" + data[i].name + "</p>" + "</li>";
 // }
-let toName; //消息接受者账号
-let userName;   //发送消息者的账号
+var toName; //消息接受者账号
+var userName;   //发送消息者的账号
 // $(".chatbar-contacts-uls").html(html);
 //点击按钮下拉
 $(".icon-lianxiren").bind('click', function () {
@@ -95,12 +95,10 @@ $("#find").click(function (){
                 // 将所有符合搜索条件的用户显示
                 for (var i = 0; i < data.length; i++) {
                     $(".friends1").append("<li class=\"friends2\" style=\"margin-top: 22px;\">"+ "<i class='iconfont icon-ren1 friends3' title='好友资料'></i>"+
-                    "<p class=\"friends4\">"+data[i].username+"<button style=\"margin-left: 100px\">添加好友</button></p><hr></li>");
+                    "<p class=\"friends4\">"+data[i].username+"<button id='addd' style=\"margin-left: 100px\"" +
+                        "onclick=\"addFriend(" + "'" + data[i].username + "'" + ")\">添加好友</button></p><hr></li>");
                 }
             }
-          /*  $("#findfriend").html(html);*/
-            //前端片拼接
-            // $("#findArea").val("");
         },
         error(error){
             console.log(error);
@@ -108,36 +106,28 @@ $("#find").click(function (){
     })
 })
 
-//点击添加好友按钮,获得显示用户的账号name
-//
-$("#").click(function (name){
-    $.ajax({
-        url:'',//
-        data:{'fromUserName':userName,"toUseName":name},
-        success:function (data){
-            //成功发送验证消息
-        },
-        error:function (error){
-            console.log(error);
-        }
-    })
-})
+//点击添加好友按钮,获得显示用户的账号name,将好友消息请求消息添加到数据库中
+//完成
+function addFriend(toName){
+    if(toName==userName)
+    {
+        alert("不能添加自己为好友！");
+    }
+    else{
+        $.ajax({
+            type: 'POST',
+            url: '/msg/addMsg',
+            // data: data,
+            data:{"fromUserName":userName,"toUserName":toName},
+            success: function () {
 
-//点击消息发送按钮，将消息存入数据库
-//
-/*$("#mess").click(function (){
-    var msg = $("#send").val();
-    $.ajax({
-        url:'/chatMsg/addMsg',//前端传：发送账号，接受账号，消息内容，存入数据库
-        data:{'sendUserName':userName,"toUseName":toName,'msg':msg},
-        success:function (data){
-            console.log(data);
-        },
-        error:function (error){
-            console.log(error);
-        }
-    })
-})*/
+            }
+        });
+        alert("已发送!");
+    }
+
+}
+
 
 //点击好友列表消息历史记录按钮，显示消息记录
 $("#").click(function (){
@@ -153,20 +143,6 @@ $("#").click(function (){
     })
 })
 
-//点击消息，显示好友请求
-$("#send").click(function (){
-    $.ajax({
-        url:'',//前端传：用户账号,返回所有消息，显示在消息页面上
-        data:{'toUserName':userName},
-        success:function (data){
-            //将返回的消息显示在列表
-            console.log();
-        },
-        error:function (error){
-            console.log(error);
-        }
-    })
-})
 //点击同意好友请求
 $("#").click(function (){
     var msg = $("#friendname").val();
@@ -196,6 +172,7 @@ $("#").click(function (){
         }
     })
 })
+
 //下载好友
 $("#send").click(function (){
     var msg = $("#send").val();
@@ -210,6 +187,7 @@ $("#send").click(function (){
         }
     })
 })
+
 //点击好友
 var count = 0;
 var div = document.getElementById("messagemanage");
@@ -240,9 +218,95 @@ $("#heading").hover(function () {
 $("#chev").click(function () {
     $(".evaluate1").slideToggle();
 });
+
+
+//点击好友验证消息按钮
 $(".fvbu1").click(function () {
     $(".fri-ver").slideToggle();
+    getNotice(userName);
+    /*  $.ajax({
+        url: "/msg/getMsg",//返回请求好友消息
+        success:function (data){
+            if (data[0] == null) {
+            }
+            else {
+                // 将所有符合搜索条件的用户显示
+                for (var i = 0; i < data.length; i++) {
+                    $(".friends1").append("<li class=\"friends2\"><p>您收到"+data[i].fromUserName+"的好友请求</p><button class=\"fvbu\">接受</button><button class=\"fvbu\">拒绝</button></li>");
+                }
+            }
+            console.log(data);
+
+        },
+        error:function (err){
+            console.log(err);
+        }
+    })*/
 });
+
+
+
+function addAgree(fromUserName) {
+    console.log("agree");
+    $.ajax({
+        type: 'POST',
+        url: '/friend/addFriend1',
+        data:{'sendUserName':fromUserName,'toUserName':userName},
+        // data: data,
+        success: function () {
+           addRefuse(fromUserName);
+           getNotice(userName);
+        }
+    });
+    //作用是完成添加好友后删除通知
+}
+
+function addRefuse(fromUserName) {
+    //delete notice
+    $.ajax({
+        type: 'POST',
+        url: '/msg/deleteMsg',
+        data:{'fromUserName':fromUserName},
+        // data: data,
+        success: function () {
+            console.log("删除成功");
+        }
+    });
+   getNotice(userName);
+}
+function getNotice(userName) {
+    console.log(userName);
+    $.ajax({
+        type: 'POST',
+        url: '/msg/getMsg',
+        data:{'toUserName':userName},
+        // data: data,
+        success: function (data) {
+            console.log(data);
+            for(var i=0;i<data.length;i++) {
+                $(".friends3").append("<li class='notice' id="+data[i].fromUserName+">\n" +
+                    "        <p class=\"username\">"+data[i].fromUserName+"</p>\n" +
+                    "        <p class=\"content\">"+data[i].msg+"</p>\n" +
+                    "        <p class=\"button\">\n" +
+                    "            <button class=\"am-btn am-btn-secondary\" onclick=\"addAgree("+"'"+data[i].fromUserName+"'"+")\">同意</button>\n" +
+                    "            <button class=\"am-btn am-btn-default\" onclick=\"addRefuse("+"'"+data[i].fromUserName+"'"+")\">拒绝</button>\n" +
+                    "        </p>\n" +
+                    "    </li>");
+            }
+            $(".friends3").append("<li class=\"tip\">暂无更多消息</li>");
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
 
 //点击信息显示按钮wa
 //完成

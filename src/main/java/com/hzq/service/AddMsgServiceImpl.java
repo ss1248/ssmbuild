@@ -24,7 +24,7 @@ public class AddMsgServiceImpl implements AddMsgService {
         return addMsgMapper.deleteMsg(fromUserName);
     }
 
-    public boolean addMsg(String fromUserName, String toUserName, String msg) {
-        return addMsgMapper.addMsg(fromUserName, toUserName, msg);
+    public int addMsg(AddMsg addMsg) {
+        return addMsgMapper.addMsg(addMsg);
     }
 }
