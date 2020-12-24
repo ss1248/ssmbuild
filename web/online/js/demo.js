@@ -517,6 +517,40 @@ $(".message-btn").click(function () {
 });
 });
 
+function downloadMessage(friendName) {  //传入好友ID 的值
+    var messageDownload = '';
+    $.ajax({
+        type: 'post',
+        url: '/chatMsg/search',//查询聊天记录
+        data: {
+            'sendUserName':userName,//当前用户
+            'toUserName': friendName, //好友
+        },
+        success: function (res) {
+            console.log(res);
+            for (var i = 0; i < res.length; i++) {
+                messageDownload +=res[i].sendUserName + "   对  " + res[i].toUseName + "   说   " + res[i].msg + '\n';//谁对谁说
+            }
+            var friendname = '';
+            alert(messageDownload);
+            var filename = userName + " 和 " + friendName + ".txt";
+            var content = messageDownload;
+            var blob = new Blob([content], {type: 'text/plain'});
+            var url = window.URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.style = "display: none";
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            alert()
+            setTimeout(function () {
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            }, 5);
+        }
+    });
+}
 
 /*//查询所有好友
 function getFriendList() {

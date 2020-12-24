@@ -9,6 +9,7 @@ public interface ChatMsgMapper {
 
     //查询聊天记录
     List<ChatMsg> searchChatMsg(ChatMsg chatMsg);
+
     //插入用户的聊天记录
     int addChatMsg(ChatMsg chatMsg);
 

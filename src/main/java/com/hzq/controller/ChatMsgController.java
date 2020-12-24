@@ -19,14 +19,14 @@ public class ChatMsgController {
     @Qualifier("ChatMsgServiceImpl")
     private ChatMsgService chatMsgService;
     //
-    @RequestMapping("/search/{sendUserName}/{toUserName}")
-    public List<ChatMsg> search(String sendUserName, String toUserName) {
-        List<ChatMsg> chatMsgs = new ArrayList<ChatMsg>();
+    @RequestMapping("/search")
+    @ResponseBody
+    public List<ChatMsg> serach(String sendUserName,  String toUserName) {
+        List<ChatMsg> chatRecords = new ArrayList<ChatMsg>();
         ChatMsg chatMsg = new ChatMsg();
         chatMsg.setSendUserName(sendUserName);
         chatMsg.setToUserName(toUserName);
         return chatMsgService.searchChatMsg(chatMsg);
-
     }
 
 

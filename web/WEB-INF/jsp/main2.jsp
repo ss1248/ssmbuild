@@ -60,6 +60,7 @@
             <div class="messages-title">
                 <i class="iconfont icon-ren1"></i>
                 <h4 id="chatWith">黄小小</h4>
+                <input type="button" onclick="downloadMessage('111111')" value="下载按钮">
             <!-- 好友验证消息按钮-->
                 <button class="fvbu1" id="friendmsg">好友验证消息</button>
             </div>
@@ -214,6 +215,7 @@
         </ul>
     </div>
 </div>
+
 <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/jquery.min.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/demo.js"></script>
 </body>
