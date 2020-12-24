@@ -28,6 +28,20 @@ $(".icon-lianxiren").bind('click', function () {
         $(".chatbar").slideDown();
         $(".icon-box").addClass('' + '' + 'shadow');
     }
+    $.ajax({
+        url:'/friend/allFriend',
+        data:{'currentUser':userName},
+        success:function (data){
+            console.log(data);
+            var html="";
+            for(var i=0;i<data.length;i++){
+                $("#lists").append("<li><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
+                    data[i].userName + "</p><i class='iconfont icon-shanchuhaoyou1' title='删除好友'style='margin-left: 210px;'></i>");
+            }
+
+        }
+    })
+
 });
 
 //点击头像事件
@@ -216,7 +230,7 @@ $(".fvbu1").click(function () {
 });
 
 
-
+//同意添加好友
 function addAgree(fromUserName) {
     console.log("agree");
     $.ajax({
@@ -504,7 +518,7 @@ $(".message-btn").click(function () {
 });
 
 
-//查询所有好友
+/*//查询所有好友
 function getFriendList() {
     var friendlist;
     $.ajax({
@@ -524,4 +538,5 @@ function getFriendList() {
             console.log(XMLHttpRequest.readyState);
         }
     });
-}
+}*/
+

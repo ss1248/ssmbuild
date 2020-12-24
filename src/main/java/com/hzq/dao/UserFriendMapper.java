@@ -16,6 +16,7 @@ public interface UserFriendMapper {
 
     UserFriend queryFriendByName(@Param("friendName") String friendName);
 
-    List<UserFriend> queryAllFriend();
+    List<UserFriend> queryAllFriend(String userName);
+
 
 }

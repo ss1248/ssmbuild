@@ -18,12 +18,13 @@
         where friendId = #{friendId}
     </select>
 
-    <select id="queryAllFriend" resultType="UserFriend">
-        select * from onlinechat.userfriend
+    <select id="queryAllFriend" resultType="UserFriend" parameterType="String">
+        select * from onlinechat.userfriend where userName=#{userName}
     </select>
 
     <select id="queryFriendByName" resultType="UserFriend">
         select * from onlinechat.userfriend
         where friendName = #{friendName}
     </select>
+
 </mapper>

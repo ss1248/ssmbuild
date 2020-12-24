@@ -19,5 +19,8 @@ public interface UserService {
     //查询全部的用户
     List<User> queryAllUser();
 
+    //
     User queryUserByName(String username);
+
+
 }

@@ -29,7 +29,7 @@ public class UserFriendServiceImpl implements UserFriendService {
         return userFriendMapper.queryFriendByName(friendName);
     }
 
-    public List<UserFriend> queryAllFriend() {
-        return userFriendMapper.queryAllFriend();
+    public List<UserFriend> queryAllFriend(String userName) {
+        return userFriendMapper.queryAllFriend(userName);
     }
 }

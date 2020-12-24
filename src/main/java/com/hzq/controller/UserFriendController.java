@@ -72,7 +72,7 @@ public class UserFriendController {
     }
 
 
-    @RequestMapping("queryFriendByName")
+/*    @RequestMapping("queryFriendByName")
     public String queryFriendByName(String queryFriendName, Model model) {
         UserFriend userFriend = userFriendService.queryFriendByName(queryFriendName);
 
@@ -86,7 +86,7 @@ public class UserFriendController {
 
         model.addAttribute("list", friendList);
         return "allFriend";
-    }
+    }*/
 
     @RequestMapping("/queryUser")
     @ResponseBody
@@ -105,18 +105,10 @@ public class UserFriendController {
     //测试上线用户是否是当前用户好友
     @RequestMapping("/allFriend")
     @ResponseBody
-    public String allFriend(String username,String currentUser){
-        //打印输入上线用户和当前用户
-        System.out.println("user:"+username+"\n"+currentUser);
-        UserFriend userFriend=userFriendService.queryFriendByName(username);
-        System.out.println(userFriend);
-        if(userFriend.getUserName().equals(currentUser)){
-            System.out.println("@@@");
-            return "true";
-        }else {
-            System.out.println("###");
-            return "false";
-        }
+    public List<UserFriend> allFriend(String currentUser) throws JsonProcessingException {
+        //输出所有用户
+        System.out.println(currentUser);
+        List<UserFriend> friendList = userFriendService.queryAllFriend(currentUser);
+        return friendList;
     }
-
 }

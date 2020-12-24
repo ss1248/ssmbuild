@@ -15,7 +15,6 @@ public interface UserFriendService {
 
     UserFriend queryFriendByName(String friendName);
 
-    List<UserFriend> queryAllFriend();
-
+    List<UserFriend> queryAllFriend(String userName);
 
 }
