@@ -10,7 +10,7 @@ public interface ChatMsgMapper {
     //查询聊天记录
     List<ChatMsg> searchChatMsg(ChatMsg chatMsg);
     //插入用户的聊天记录
-    int insertChatMsg(ChatMsg chatMsg);
+    int addChatMsg(ChatMsg chatMsg);
 
     //根据双方名字删除聊天记录
     int deleteChatMsgByName(@Param("sendUserName") String sendUserName, @Param("toUserName") String toUserName);

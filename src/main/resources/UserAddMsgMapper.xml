@@ -6,22 +6,23 @@
 
 
     <!--查询消息-->
-    <select id="selectMsgByUserId" resultType="AddMsg" parameterType="String">
+    <select id="selectMsgByUserName" resultType="AddMsg" parameterType="String">
         select * from chatonline.useraddmsg
-        where toUserId=#{toUserId}
+        where toUserName=#{toUserName}
     </select>
     <!--消息数量-->
     <select id="getMsgNum" parameterType="int">
         select count(*) from chatonline.useraddmsg
-        where toUserId = #{toUserId}
+        where toUserName = #{toUserName}
     </select>
     <insert id="addMsg" parameterType="AddMsg">
-      insert into chatonline.useraddmsg (toUserId,fromUserId,msg)
-      value (#{toUserId},#{fromUserId},#{msg})
+        insert into chatonline.useraddmsg (toUserName,fromUserName,msg)
+            value (#{toUserName},#{fromUserName},#{msg})
     </insert>
     <delete id="deleteMsg" parameterType="String">
         delete from chatonline.useraddmsg
-        where fromUserId=#{fromUserId}
+        where fromUserName=#{fromUserName}
     </delete>
+
 
 </mapper>

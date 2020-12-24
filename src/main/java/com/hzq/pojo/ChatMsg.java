@@ -12,6 +12,4 @@ public class ChatMsg {
     private String sendUserName;     //发送者ID
     private String toUserName;       //接受者ID
     private String msg;         //发送内容
-    private int isSend;         //是否发送
-
 }

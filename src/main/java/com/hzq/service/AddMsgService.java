@@ -7,8 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface AddMsgService {
-    List<AddMsg> selectMsgByUserId(int toUserId);
-    int getMsgNum(int toUserId);
-    boolean deleteMsg(int fromUserId);
-    boolean addMsg(int fromUserId,int toUserId,String msg);
+    List<AddMsg> selectMsgByUserName(String toUserName);
+    int getMsgNum(String toUserName);
+    boolean deleteMsg(String fromUserName);
+    boolean addMsg(String fromUserName,String toUserName,String msg);
+
 }

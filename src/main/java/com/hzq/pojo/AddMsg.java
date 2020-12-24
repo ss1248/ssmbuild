@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddMsg {
-    private int fromUserId;
-    private int toUserId;
+    private String fromUserName;
+    private String toUserName;
     private String msg;
 
 }

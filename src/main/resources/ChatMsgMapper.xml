@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hzq.dao.ChatMsgMapper">
 
-    <insert id="insertChatMsg" parameterType="ChatMsg">
-        insert into onlinechat.chatmsg (sendUserName,toUserName,msg,isSend)
-        values (#{sendUserName},#{toUserName},#{msg},#{isSend});
+    <insert id="addChatMsg" parameterType="ChatMsg">
+        insert into onlinechat.chatmsg (sendUserName,toUserName,msg)
+        values (#{sendUserName},#{toUserName},#{msg});
     </insert>
 
     <delete id="deleteChatMsgByName" parameterType="int">

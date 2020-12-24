@@ -7,23 +7,24 @@ import java.util.List;
 
 public class AddMsgServiceImpl implements AddMsgService {
     private AddMsgMapper addMsgMapper;
+
     public void setAddMsgMapper(AddMsgMapper addMsgMapper) {
-        this.addMsgMapper=addMsgMapper;
+        this.addMsgMapper = addMsgMapper;
     }
 
-    public List<AddMsg> selectMsgByUserId(int toUserId) {
-        return addMsgMapper.selectMsgByUserId(toUserId);
+    public List<AddMsg> selectMsgByUserName(String toUserName) {
+        return addMsgMapper.selectMsgByUserName(toUserName);
     }
 
-    public int getMsgNum(int toUserId) {
-        return addMsgMapper.getMsgNum(toUserId);
+    public int getMsgNum(String toUserName) {
+        return addMsgMapper.getMsgNum(toUserName);
     }
 
-    public boolean deleteMsg(int fromUserId) {
-        return addMsgMapper.deleteMsg(fromUserId);
+    public boolean deleteMsg(String fromUserName) {
+        return addMsgMapper.deleteMsg(fromUserName);
     }
 
-    public boolean addMsg(int fromUserId, int toUserId, String msg) {
-        return addMsgMapper.addMsg(fromUserId,toUserId,msg);
+    public boolean addMsg(String fromUserName, String toUserName, String msg) {
+        return addMsgMapper.addMsg(fromUserName, toUserName, msg);
     }
 }

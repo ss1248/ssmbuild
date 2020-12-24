@@ -18,28 +18,29 @@ public class MsgController {
     @Qualifier("AddMsgServiceImpl")
     private AddMsgService addMsgService;
 
-    @RequestMapping("{toUserId}/getMsg")
-    public List<AddMsg> getMsg(int toUserId) {
+    @RequestMapping("{toUserName}/getMsg")
+    public List<AddMsg> getMsg(String toUserName) {
         List<AddMsg> addMsgList = new ArrayList<AddMsg>();
-        addMsgList = addMsgService.selectMsgByUserId(toUserId);
+        addMsgList = addMsgService.selectMsgByUserName(toUserName);
         return addMsgList;
     }
 
-    @RequestMapping("{toUserId}/getMsgNum")
-    public int getMsgNum(int toUserId) {
-        return  addMsgService.getMsgNum(toUserId);
-    }
+//    @RequestMapping("{toUserName}/getMsgNum")
+//    public int getMsgNum(String toUserName) {
+//        return  addMsgService.getMsgNum(toUserName);
+//    }
 
-    @RequestMapping("{fromUserId}/deleteMsg")
-    public List<AddMsg> deleteMsg(int fromUserId) {
-        addMsgService.deleteMsg(fromUserId);
+    @RequestMapping("{fromUserName}/deleteMsg")
+    public List<AddMsg> deleteMsg(String fromUserName) {
+        addMsgService.deleteMsg(fromUserName);
         return null;
     }
 
-    @RequestMapping("{toUserId}/addMsg")
-    public List<AddMsg> addMsg(int fromUserId, int toUserId) {
+    @RequestMapping("{toUserName}/addMsg")
+    public List<AddMsg> addMsg(String fromUserName, String toUserName) {
         String msg = "请求添加你为好友";
-        boolean bool =  addMsgService.addMsg(toUserId,fromUserId,msg);
+        boolean bool =  addMsgService.addMsg(toUserName,fromUserName,msg);
         return null;
     }
+
 }

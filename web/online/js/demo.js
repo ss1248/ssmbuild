@@ -78,6 +78,7 @@ function time(type) {
 
 
 //添加好友搜索功能
+//完成
 $("#find").click(function (){
     var name =$("#findArea").val();
     $.ajax({
@@ -113,19 +114,20 @@ $("#").click(function (name){
 })
 
 //点击消息发送按钮，将消息存入数据库
-$("#send").click(function (){
+//
+/*$("#mess").click(function (){
     var msg = $("#send").val();
     $.ajax({
-        url:'',//前端传：发送账号，接受账号，消息内容，存入数据库
-        data:{'fromUserName':userName,"toUseName":toName,'msg':msg},
+        url:'/chatMsg/addMsg',//前端传：发送账号，接受账号，消息内容，存入数据库
+        data:{'sendUserName':userName,"toUseName":toName,'msg':msg},
         success:function (data){
-            console.log();
+            console.log(data);
         },
         error:function (error){
             console.log(error);
         }
     })
-})
+})*/
 
 //点击好友列表消息历史记录按钮，显示消息记录
 $("#").click(function (){
@@ -323,7 +325,7 @@ ws.onmessage= function(evt){
 
 
 
-
+/*
         //过滤非好友用户
         $.ajax({
             url:'',//返回当前用户的所有好友，判断上线用户是否是当前用户好友
@@ -337,7 +339,7 @@ ws.onmessage= function(evt){
 
             }
 
-        })
+        })*/
 
 
         for(var name of names){
@@ -394,10 +396,23 @@ ws.onclose=function(){
 }
 
 //点击发送按钮
+//完成消息存入功能
 $(".message-btn").click(function () {
     var message = $('.messages-content').val();
     var messages_text = $(".messages-text");
     $(".messages-content").val("");
+
+    $.ajax({
+        url:'/chatMsg/addMsg',//前端传：发送账号，接受账号，消息内容，存入数据库
+        data:{'sendUserName':userName,'toUserName':toName,'msg':message},
+        success:function (data){
+            console.log(data);
+        },
+        error:function (error){
+            console.log(error);
+        }
+    })
+
     var timer = time();
     if (message != "undefined" && message != '') {
         var str = "<ul class='messages-text-uls'><li class='messages-text-lis'>"

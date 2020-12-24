@@ -14,8 +14,8 @@ public class ChatMsgServiceImpl implements ChatMsgService{
     }
 
     //插入用户的聊天记录
-    public int insertChatMsg(ChatMsg chatMsg) {
-        return chatMsgMapper.insertChatMsg(chatMsg);
+    public int addChatMsg(ChatMsg chatMsg) {
+        return chatMsgMapper.addChatMsg(chatMsg);
     }
 
     //根据双方名字删除聊天记录
@@ -34,5 +34,6 @@ public class ChatMsgServiceImpl implements ChatMsgService{
     }
 
     public void setChatMsgMapper(ChatMsgMapper chatMsgMapper) {
+        this.chatMsgMapper=chatMsgMapper;
     }
 }
