@@ -22,6 +22,9 @@ public class User {
     private String username;        //账号
     private String password;        //密码
     private Date creat_at;          //创建日期
+/*
     private Map<String,String> toreviews;   //自己对好友评价 <好友id:自己的评价>
     private Map<String,String> fromreviews; //好友对自己的评价<好友id:好友对自己的评价>
+*/
+
 }

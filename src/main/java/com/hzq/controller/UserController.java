@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzq.pojo.User;
 import com.hzq.service.UserService;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -126,9 +125,9 @@ public class UserController {
             if (!(flag1&&flag2)) {
                 continue;
             }
-            else {
+            else {      //登录成功
                 session.setAttribute("user",user.getUsername());
-                return "main";
+                return "main2";
             }
         }
         model.addAttribute("error","用户名或密码错误!");
@@ -165,6 +164,8 @@ public class UserController {
     @RequestMapping("/remain")
     public String remainPerMess(User user,HttpSession session){
         //获得当前用户名
+        System.out.println(user);
+        System.out.println("@@@@");
         String username_temp= (String) session.getAttribute("user");
         //获得数据库中用户原来的信息
         User user1=userService.queryUserByName(username_temp);
@@ -177,7 +178,7 @@ public class UserController {
         System.out.println(user);
         //更新数据库用户信息
         userService.updateUser(user);
-        return "main";
+        return "main2";
     }
 
     //通过json查询单个用户

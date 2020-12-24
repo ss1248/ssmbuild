@@ -87,10 +87,20 @@ $("#find").click(function (){
         url:"/friend/queryUser",//后端取值接口，给搜索账号（name），返回搜索用户信息
         data:{'friendName':name},
         success:function (data){
+            console.log(data);
+            if (data[0] == null) {
+                alert('用户不存在');
+            }
+            else {
+                // 将所有符合搜索条件的用户显示
+                for (var i = 0; i < data.length; i++) {
+                    $(".friends1").append("<li class=\"friends2\" style=\"margin-top: 22px;\">"+ "<i class='iconfont icon-ren1 friends3' title='好友资料'></i>"+
+                    "<p class=\"friends4\">"+data[i].username+"<button style=\"margin-left: 100px\">添加好友</button></p><hr></li>");
+                }
+            }
+          /*  $("#findfriend").html(html);*/
             //前端片拼接
             // $("#findArea").val("");
-            console.log(data);
-
         },
         error(error){
             console.log(error);
@@ -223,12 +233,19 @@ ccc.onclick = function () {
 }
 
 document.getElementById("alert_time").innerText = time()
-
+//好友消息，验证消息等下拉窗口
 $("#heading").hover(function () {
     $(".Content-Main").slideToggle();
 });
+$("#chev").click(function () {
+    $(".evaluate1").slideToggle();
+});
+$(".fvbu1").click(function () {
+    $(".fri-ver").slideToggle();
+});
 
-//点击信息显示按钮
+//点击信息显示按钮wa
+//完成
 $(".icon-xiugaiziliao").click(function () {
     $(".Content-Main").slideToggle();
     //显示登录用户数据
@@ -272,11 +289,13 @@ function remainFriendView(){
             $("#birthday1").val(v.birthday);
             $("#email1").val(v.email);
             $("#tel1").val(v.tel);
+            $("#evaluate").val(v.instructions);
         },
         error:function (err){
             console.log(err);
         }
     })
+
 }
 
 

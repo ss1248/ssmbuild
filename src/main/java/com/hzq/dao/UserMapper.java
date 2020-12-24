@@ -24,7 +24,5 @@ public interface UserMapper {
     //通过账号查询一个用户
     User queryUserByName(@Param("username")String username);
 
-    //查询自己对好友的评价
-    String querytoFriendReviews(int friendid,String review);
 
 }

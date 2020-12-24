@@ -91,14 +91,19 @@ public class UserFriendController {
 
     @RequestMapping("/queryUser")
     @ResponseBody
-    public String queryUser(String friendName) throws JsonProcessingException {
+    public List<User> queryUser(String friendName) throws JsonProcessingException {
         System.out.println(friendName);
         System.out.println("####");
 
 //        UserServiceImpl userService=new UserServiceImpl();
-        User user = userService.queryUserByName(friendName);
 
-        System.out.println(user);
+        List<User> userList = new ArrayList<User>();
+        User user = userService.queryUserByName(friendName);
+        userList.add(user);
+        System.out.println(userList);
+        return userList;
+
+        /*System.out.println(user);
         List<User> userList = new ArrayList<User>();
         userList.add(user);
 
@@ -109,6 +114,6 @@ public class UserFriendController {
         }
         String v = mapper.writeValueAsString(userList);
         System.out.println(v);
-        return v;
+        return v;*/
     }
 }
