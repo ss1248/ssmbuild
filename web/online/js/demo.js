@@ -15,9 +15,9 @@ $(".icon-lianxiren").bind('click', function () {
         data:{'currentUser':userName},
         success:function (data){
             console.log(data);
-            var html="";
+            $("#friendList").html("");
             for(var i=0;i<data.length;i++){
-                $("#lists").append("<li><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
+                $("#friendList").append("<li><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
                     data[i].friendName + "</p><i onclick='deletefriend("+data[i].friendName+")' class='iconfont icon-shanchuhaoyou1' id='deletfriend' title='删除好友'style='margin-left: 210px;'></i>");
             }
         }
@@ -91,6 +91,7 @@ $("#find").click(function (){
             }
             else {
                 // 将所有符合搜索条件的用户显示
+                $(".friends1").html("");
                 for (var i = 0; i < data.length; i++) {
                     $(".friends1").append("<li class=\"friends2\" style=\"margin-top: 22px;\">"+ "<i class='iconfont icon-ren1 friends3' title='好友资料'></i>"+
                     "<p class=\"friends4\">"+data[i].username+"<button id='addd' style=\"margin-left: 100px\"" +
@@ -195,24 +196,6 @@ $("#cfe").click(function () {
 $(".fvbu1").click(function () {
     $(".fri-ver").slideToggle();
     getNotice(userName);
-    /*  $.ajax({
-        url: "/msg/getMsg",//返回请求好友消息
-        success:function (data){
-            if (data[0] == null) {
-            }
-            else {
-                // 将所有符合搜索条件的用户显示
-                for (var i = 0; i < data.length; i++) {
-                    $(".friends1").append("<li class=\"friends2\"><p>您收到"+data[i].fromUserName+"的好友请求</p><button class=\"fvbu\">接受</button><button class=\"fvbu\">拒绝</button></li>");
-                }
-            }
-            console.log(data);
-
-        },
-        error:function (err){
-            console.log(err);
-        }
-    })*/
 });
 
 
@@ -253,6 +236,7 @@ function getNotice(userName) {
         // data: data,
         success: function (data) {
             console.log(data);
+            $(".friends3").html("");
             for(var i=0;i<data.length;i++) {
                 $(".friends3").append("<li ><p>您收到"+data[i].fromUserName+ "的好友请求</p><button class=\"fvbu\" onclick=\"addAgree("+"'"+data[i].fromUserName+"'"+")\">接受</button>"+
                 "<button class=\"fvbu\" onclick=\"addRefuse("+"'"+data[i].fromUserName+"'"+")\">拒绝</button></li>")
@@ -537,26 +521,3 @@ function downloadMessage(friendName) {  //传入好友ID 的值
         }
     });
 }
-
-/*//查询所有好友
-function getFriendList() {
-    var friendlist;
-    $.ajax({
-        type: 'post',
-        url: '/friend/allFriend',//查询所有好友
-        datatype:"json",
-        success: function (data) {
-            console.log(data);
-            friendlist = data;
-            for(let i in data)
-                console.log(data[i].friendName);
-            //for循环里多次调用函数，查好友具体信息
-        },
-        error:function (XMLHttpRequest) {
-            //打印错误信息
-            console.log(XMLHttpRequest.status);
-            console.log(XMLHttpRequest.readyState);
-        }
-    });
-}*/
-
