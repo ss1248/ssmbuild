@@ -102,6 +102,17 @@ li {
     border: 1px solid #0975c6;
     z-index: 0;
 }
+.flist{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    bottom: 0;
+    background: #fff;
+    height: 700px;
+    right: 584px;
+    border: 1px solid #0975c6;
+    z-index: 0;
+}
 
 .chatbar-messages {
     position: absolute;

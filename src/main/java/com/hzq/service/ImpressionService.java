@@ -13,4 +13,6 @@ public interface ImpressionService {
 
         boolean addImpression(UserImpression userImpression);
 
+       List<UserImpression> queryImpressionByName(String fromUserName,String toUserName);
+
 }

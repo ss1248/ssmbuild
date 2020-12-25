@@ -18,4 +18,8 @@
         delete from onlinechat.userimpression
         where fromUserName=#{fromUserName}
     </delete>
+    <select id="queryImpressionByName" resultType="UserImpression">
+        select * from onlinechat.userimpression
+        where fromUserName = #{fromUserName} and toUserName = #{toUserName}
+    </select>
 </mapper>

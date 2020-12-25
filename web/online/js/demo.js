@@ -10,7 +10,7 @@ $(".icon-lianxiren").bind('click', function () {
         $(".chatbar").slideDown();
         $(".icon-box").addClass('' + '' + 'shadow');
     }
-    $.ajax({
+   /* $.ajax({
         url:'/friend/allFriend',
         data:{'currentUser':userName},
         success:function (data){
@@ -21,7 +21,7 @@ $(".icon-lianxiren").bind('click', function () {
                     data[i].friendName + "</p><i onclick='deletefriend("+data[i].friendName+")' class='iconfont icon-shanchuhaoyou1' id='deletfriend' title='删除好友'style='margin-left: 210px;'></i>");
             }
         }
-    })
+    })*/
 });
 
 //点击删除好友事假，删除该与用户的好友关系
@@ -184,13 +184,66 @@ document.getElementById("alert_time").innerText = time()
 //好友消息，验证消息等下拉窗口
 $("#heading").hover(function () {
     $(".Content-Main").slideToggle();
+    $.ajax({
+        url: "/user/findOneUser",
+        success:function (res){
+            console.log(res);
+            //将Json对象转为Json字符串
+            var v= JSON.parse(res);
+            console.log(v);
+            $("#username").val(v.username);
+            $("#name").val(v.name);
+            $("#birthday").val(v.birthday);
+            $("#email").val(v.email);
+            $("#tel").val(v.tel);
+            $("#message").val(v.instructions);
+        },
+        error:function (err){
+            console.log(err);
+        }
+    })
+
 });
 $("#chev").click(function () {
     $(".evaluate1").slideToggle();
 });
+
+
+//列表下拉
+$(".icon-liebiao").click(function () {
+    $(".flist").slideToggle();
+
+})
+
+
 $("#cfe").click(function () {
     $(".fevaluate").slideToggle();
+    $.ajax({
+        url:'/impression/queryImpressionPer',
+        data:{'toUserName':toName,'fromUserName':userName},
+        success:function (data){
+            console.log(data);
+            $(".evarea").html("");
+            $(".evarea").append("data");
+        },
+        error:function (){
+
+        }
+    })
 });
+function addFriendView(){
+    var msg = $(".evarea").val();
+    $.ajax({
+        url:'impression/addImpression',
+        data:{'fromUserName':userName,'toUserName':toName,'msg':msg},
+        success:function (){
+            console.log("添加好友评价成功");
+        },
+        error:function (){
+            console.log("添加好友评价失败");
+        }
+    })
+}
 
 //点击好友验证消息按钮
 $(".fvbu1").click(function () {

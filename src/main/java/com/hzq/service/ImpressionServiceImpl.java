@@ -24,4 +24,7 @@ public class ImpressionServiceImpl implements ImpressionService{
         return impressionMapper.addImpression(userImpression);
     }
 
+    public List<UserImpression> queryImpressionByName(String fromUserName,String toUserName){
+        return impressionMapper.queryImpressionByName(fromUserName,toUserName);
+    }
 }

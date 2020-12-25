@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>聊天页面实现</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/online/css/demo1.css">
-    <link rel="stylesheet" href="//at.alicdn.com/t/font_2274543_vk3cl1zog2.css">
+    <<link rel="stylesheet" href="//at.alicdn.com/t/font_2274543_tglrzaobpfh.css">
 </head>
 <body style="background: #6d929c">
 <div style="background:#8eccd9;position: relative;right: -250px;height: 700px;width: 94px;top: 50px">
@@ -42,6 +42,13 @@
            style="color: black;font-size: 30px;left: 30px;top: 399px;position: relative" id="shutdown"
            title="shout-down" onclick="window.location.href='${pageContext.request.contextPath}/user/login'"></i>
     </div>
+
+<%--        列表下拉按钮--%>
+    <div class="icon-box">
+        <i class="iconfont icon-liebiao"
+        style="color: black;font-size: 30px;left: 30px;top: 175px;position: relative" id="push"
+        title="查看好友列表"></i>
+    </div>
     <img src="<%=request.getContextPath()%>/online/images/inbg.gif" style="position: absolute;top: 0px;left: 95px;height: 700px;width: 700px;background-color:#89b9b2">
     <div class="chatbar">
         <%--在线用户--%>
@@ -52,14 +59,29 @@
                 <button type="button">搜索</button>
             </div>
             <%--在线用户--%>
-            <ul class="chatbar-contacts-uls" id="lists">
+            <div>
+                <ul class="chatbar-contacts-uls" id="lists">
 
-            </ul>
-            <%--好友--%>
-            <ul class="chatbar-contacts-uls" id="friendList">
+                </ul>
+            </div>
+            <div>
+                <ul class="chatbar-contacts-uls" id="friendList">
 
-            </ul>
+                </ul>
+            </div>
         </div>
+
+
+        <div class="flist">
+           <div class="contacts-search-box">
+                <i class="iconfont icon-icon-"></i>
+                <input type="text" class="search-text" placeholder="请输入要搜索的联系人">
+           </div>
+           <ul class="chatbar-contacts-uls" id="list1">
+           </ul>
+        </div>
+
+
         <%--聊天框--%>
         <div class="chatbar-messages">
             <%--聊天框头部--%>
@@ -167,7 +189,7 @@
                     <span style="margin-top: 18px;margin-left: 30px;position: relative;top: -50px;">用户名:</span>
                     <input type="text" name="usrname" id="username1" placeholder="好友的用户名"
                            style="position: relative;margin-left: 136px;top: -40px;width: 200px" disabled>
-                    <label style="margin-top: 0px;">
+                    <label style="margin-top: 0;">
                         <span>姓&emsp;&emsp;名：</span>
                         <input type="text" name="name" id="name1" placeholder="好友的真实姓名！" disabled>
                     </label>
@@ -218,7 +240,7 @@
     </div>
         <div class="fevaluate">
             <textarea class="evarea"></textarea>
-            <button class="evbt">添加好友评价</button>
+            <button class="evbt" onclick="addFriendView()">添加好友评价</button>
         </div>
 </div>
 <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/jquery.min.js"></script>

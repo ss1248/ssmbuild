@@ -36,7 +36,6 @@ public class MsgController {
     @RequestMapping("/deleteMsg")
     public List<AddMsg> deleteMsg(String fromUserName) {
         addMsgService.deleteMsg(fromUserName);
-        System.out.println("@");
         return null;
     }
 

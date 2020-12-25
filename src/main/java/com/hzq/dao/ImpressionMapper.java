@@ -1,6 +1,7 @@
 package com.hzq.dao;
 
 import com.hzq.pojo.AddMsg;
+import com.hzq.pojo.User;
 import com.hzq.pojo.UserImpression;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,4 +16,6 @@ public interface ImpressionMapper {
 
 
     boolean addImpression(UserImpression userImpression);
+
+    List<UserImpression> queryImpressionByName(String fromUserName, String toUserName);
 }
