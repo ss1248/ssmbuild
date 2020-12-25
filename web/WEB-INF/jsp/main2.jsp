@@ -43,12 +43,13 @@
            title="shout-down" onclick="window.location.href='${pageContext.request.contextPath}/user/login'"></i>
     </div>
 
-<%--        列表下拉按钮--%>
+    <%--列表下拉按钮--%>
     <div class="icon-box">
         <i class="iconfont icon-liebiao"
         style="color: black;font-size: 30px;left: 30px;top: 175px;position: relative" id="push"
         title="查看好友列表"></i>
     </div>
+
     <img src="<%=request.getContextPath()%>/online/images/inbg.gif" style="position: absolute;top: 0px;left: 95px;height: 700px;width: 700px;background-color:#89b9b2">
     <div class="chatbar">
         <%--在线用户--%>
@@ -58,26 +59,23 @@
                 <input type="text" class="search-text" placeholder="请输入要搜索的联系人" style="width: 240px">
                 <button type="button">搜索</button>
             </div>
-            <%--在线用户--%>
+            <%--好友列表--%>
             <div>
                 <ul class="chatbar-contacts-uls" id="lists">
 
                 </ul>
             </div>
-            <div>
-                <ul class="chatbar-contacts-uls" id="friendList">
-
-                </ul>
-            </div>
         </div>
 
-
+        <%--下拉菜单--%>
+            <%----%>
         <div class="flist">
            <div class="contacts-search-box">
                 <i class="iconfont icon-icon-"></i>
                 <input type="text" class="search-text" placeholder="请输入要搜索的联系人">
            </div>
            <ul class="chatbar-contacts-uls" id="list1">
+
            </ul>
         </div>
 

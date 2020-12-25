@@ -10,18 +10,7 @@ $(".icon-lianxiren").bind('click', function () {
         $(".chatbar").slideDown();
         $(".icon-box").addClass('' + '' + 'shadow');
     }
-   /* $.ajax({
-        url:'/friend/allFriend',
-        data:{'currentUser':userName},
-        success:function (data){
-            console.log(data);
-            $("#friendList").html("");
-            for(var i=0;i<data.length;i++){
-                $("#friendList").append("<li><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
-                    data[i].friendName + "</p><i onclick='deletefriend("+data[i].friendName+")' class='iconfont icon-shanchuhaoyou1' id='deletfriend' title='删除好友'style='margin-left: 210px;'></i>");
-            }
-        }
-    })*/
+
 });
 
 //点击删除好友事假，删除该与用户的好友关系
@@ -42,19 +31,6 @@ function deletefriend(name){
 }
 
 
-
-//点击头像事件
-function showChat(name){
-    toName=name;
-    $('.messages-title h4').text(toName);
-    $(".messages-text").html("");
-    //sessionStorage
-    var chatData=sessionStorage.getItem(toName);
-    if(chatData != null){
-        //将聊天记录渲染到聊天区
-        $(".messages-text").html(chatData)
-    }
-}
 
 //时间封装
 function time(type) {
@@ -212,7 +188,20 @@ $("#chev").click(function () {
 //列表下拉
 $(".icon-liebiao").click(function () {
     $(".flist").slideToggle();
+    $.ajax({
+        url:'/friend/allFriend',
+        data:{'currentUser':userName},
+        success:function (data){
+            console.log(data);
+            $("#list1").html("");
+            for(var i=0;i<data.length;i++){
 
+                $("#list1").append("<li onclick='showChat(\"" + data[i].friendName + "\")'><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
+                    data[i].friendName + "</p><i onclick='deletefriend("+data[i].friendName+")' class='iconfont icon-shanchuhaoyou1' id='deletfriend' title='删除好友'style='margin-left: 210px;'></i>");
+            }
+
+        }
+    })
 })
 
 
@@ -378,6 +367,19 @@ function addviews(){
 }
 
 
+//点击头像事件
+function showChat(name){
+    toName=name;
+    $('.messages-title h4').text(toName);
+    $(".messages-text").html("");
+    //sessionStorage
+    var chatData=sessionStorage.getItem(toName);
+    if(chatData != null){
+        //将聊天记录渲染到聊天区
+        $(".messages-text").html(chatData)
+    }
+}
+
 
 //侯雨辰添加
 $(function (){
@@ -393,7 +395,7 @@ $.ajax({
 var ws = null;
 //判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
-    ws = new WebSocket("ws://localhost:8888/chat");
+    ws = new WebSocket("ws://"+window.location.host+"/chat");
 }
 else {
     alert('当前浏览器 Not support websocket')
@@ -422,27 +424,6 @@ ws.onmessage= function(evt){
 
 
 
-    /*    //过滤非好友用户
-        $.ajax({
-            url:'/friend/allFriend',//返回当前用户的所有好友，判断上线用户是否是当前用户好友
-            data:{'username':name,'currentUser':userName},
-            success:function (data){
-                console.log(data);
-                if(data=="true"){
-                    for(var name of names){
-                        if(name != userName) {
-                            userliststr += "<li  onclick='showChat(\"" + name + "\")'>" + "<i class='iconfont icon-ren1' title='好友资料'></i>" + "<p>" + name+ "</p>" + "<i class='iconfont icon-shanchuhaoyou1' title='删除好友'style='margin-left: 210px;'></i>"+ "</li>";
-                        }
-                    }
-                    //渲染好友列表
-                    $(".chatbar-contacts-uls").html(userliststr);
-                }
-            },
-            error:function (error){
-                console.log(error);
-            }
-
-        })*/
 
         for(var name of names){
             if(name != userName) {
@@ -450,7 +431,7 @@ ws.onmessage= function(evt){
             }
         }
         //渲染好友列表
-        $(".chatbar-contacts-uls").html(userliststr);
+        $("#list1").html(userliststr);
     }else{
         //不是系统消息
         //将服务端推送的消息进行展示

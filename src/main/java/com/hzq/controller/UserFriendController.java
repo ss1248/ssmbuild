@@ -75,27 +75,11 @@ public class UserFriendController {
         return  "OK";
     }
 
-/*    @RequestMapping("queryFriendByName")
-    public String queryFriendByName(String queryFriendName, Model model) {
-        UserFriend userFriend = userFriendService.queryFriendByName(queryFriendName);
-
-        List<UserFriend> friendList = new ArrayList<UserFriend>();
-        friendList.add(userFriend);
-
-        if (friendList == null) {
-            friendList = userFriendService.queryAllFriend();
-            model.addAttribute("error", "未查到");
-        }
-
-        model.addAttribute("list", friendList);
-        return "allFriend";
-    }*/
 
     @RequestMapping("/queryUser")
     @ResponseBody
     public List<User> queryUser(String friendName) throws JsonProcessingException {
 
-//        UserServiceImpl userService=new UserServiceImpl();
 
         List<User> userList = new ArrayList<User>();
         User user = userService.queryUserByName(friendName);
