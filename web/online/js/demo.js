@@ -1,21 +1,3 @@
-// var data = [
-//     {name: "黄小小"},
-//     {name: "李小小"},
-//     {name: "肖大大"},
-//     {name: "江大大"},
-//     {name: "黄某某"},
-//     {name: "陈某某"},
-//     {name: "苏某某"},
-//     {name: "陈小小"},
-//     {name: "刘某某"},
-//     {name: "黄大大"},
-//     {name: "王闯"}
-// ];
-//
-// var html = "";
-// for (var i = 0; i < data.length; i++) {
-//     html += "<li>" + "<i class='iconfont'>&#xe752;</i>" + "<p>" + data[i].name + "</p>" + "</li>";
-// }
 var toName; //消息接受者账号
 var userName;   //发送消息者的账号
 // $(".chatbar-contacts-uls").html(html);
@@ -91,21 +73,6 @@ function time(type) {
     return time;
 }
 
-
-// //搜索功能
-// $('.search-text').bind('keyup', function () {
-//     var txt = $('.search-text').val();
-//
-//     txt = txt.replace(/\s/g, '');
-//     $('.chatbar-contacts-uls li').each(function () {
-//         if (!$(this).is(':contains(' + txt + ')')) {
-//             $(this).hide();
-//         } else {
-//             $(this).show();
-//         }
-//     });
-//     return false;
-// });
 
 
 //添加好友搜索功能

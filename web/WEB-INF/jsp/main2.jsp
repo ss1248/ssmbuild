@@ -40,7 +40,7 @@
     <div class="icon-box">
         <i class="iconfont icon-guanji1"
            style="color: black;font-size: 30px;left: 30px;top: 399px;position: relative" id="shutdown"
-           title="shout-down"></i>
+           title="shout-down" onclick="window.location.href='${pageContext.request.contextPath}/user/login'"></i>
     </div>
     <img src="<%=request.getContextPath()%>/online/images/inbg.gif" style="position: absolute;top: 0px;left: 95px;height: 700px;width: 700px;background-color:#89b9b2">
     <div class="chatbar">
@@ -51,7 +51,12 @@
                 <input type="text" class="search-text" placeholder="请输入要搜索的联系人" style="width: 240px">
                 <button type="button">搜索</button>
             </div>
+            <%--在线用户--%>
             <ul class="chatbar-contacts-uls" id="lists">
+
+            </ul>
+            <%--好友--%>
+            <ul class="chatbar-contacts-uls" id="friendList">
 
             </ul>
         </div>

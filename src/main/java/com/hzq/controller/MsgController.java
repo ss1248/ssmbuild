@@ -46,9 +46,9 @@ public class MsgController {
         System.out.println(fromUserName+"\n"+toUserName);
         String msg = "请求添加你为好友";
 
-        if(){
+     /*   if(){
 
-        }
+        }*/
         AddMsg addMsg=new AddMsg();
         addMsg.setFromUserName(fromUserName);
         addMsg.setToUserName(toUserName);
