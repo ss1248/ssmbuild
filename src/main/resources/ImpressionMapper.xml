@@ -5,7 +5,7 @@
 <mapper namespace="com.hzq.dao.ImpressionMapper">
 
 
-    <select id="selectImpressionByName" resultType="UserImpression" parameterType="String">
+    <select id="selectImpressionByName" resultType="UserImpression">
         select * from onlinechat.userimpression
         where toUserName=#{toUserName}
     </select>
@@ -22,4 +22,5 @@
         select * from onlinechat.userimpression
         where fromUserName = #{fromUserName} and toUserName = #{toUserName}
     </select>
+
 </mapper>

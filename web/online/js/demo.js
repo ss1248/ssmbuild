@@ -25,8 +25,6 @@ function deletefriend(name){
         error:function (){
             console.log("删除好友失败");
         }
-
-
     })
 }
 
@@ -70,7 +68,7 @@ $("#find").click(function (){
                 $(".friends1").html("");
                 for (var i = 0; i < data.length; i++) {
                     $(".friends1").append("<li class=\"friends2\" style=\"margin-top: 22px;\">"+ "<i class='iconfont icon-ren1 friends3' title='好友资料'></i>"+
-                    "<p class=\"friends4\">"+data[i].username+"<button id='addd' style=\"margin-left: 100px\"" +
+                    "<p class=\"friends4\" style='color: white'>"+data[i].username+"<button id='addd' style=\"margin-left: 100px\"" +
                         "onclick=\"addFriend(" + "'" + data[i].username + "'" + ")\">添加好友</button></p><hr></li>");
                 }
             }
@@ -193,13 +191,12 @@ $(".icon-liebiao").click(function () {
         data:{'currentUser':userName},
         success:function (data){
             console.log(data);
+            console.log("###");
             $("#list1").html("");
             for(var i=0;i<data.length;i++){
-
                 $("#list1").append("<li onclick='showChat(\"" + data[i].friendName + "\")'><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
                     data[i].friendName + "</p><i onclick='deletefriend("+data[i].friendName+")' class='iconfont icon-shanchuhaoyou1' id='deletfriend' title='删除好友'style='margin-left: 210px;'></i>");
             }
-
         }
     })
 })
@@ -437,7 +434,7 @@ ws.onmessage= function(evt){
         //将服务端推送的消息进行展示
         var timer = time();
         var str="<ul class='messages-text-uls'><li class='messages-text-lis'>"
-            + "<img src='/online/images/head2.jpg' class='img' style='top: 23px'>"
+            + "<img src='/online/images/head4.jpg' class='img' style='top: 23px'>"
             + "<p class = 'op'>" + res.message + "</p>" + "<span class='time' style='display: inline'>" + timer + "</span>" + "</li></ul>";
 
         if(toName==res.fromName){
@@ -499,7 +496,7 @@ $(".message-btn").click(function () {
     var timer = time();
     if (message != "undefined" && message != '') {
         var str = "<ul class='messages-text-uls'><li class='messages-text-lis'>"
-            + "<img src='/online/images/head1.jpg' class='img' style='left: 512px;top: 23px'>"
+            + "<img src='/online/images/head4.jpg' class='img' style='left: 512px;top: 23px'>"
             + "<p>" + message + "</p>" + "<span class='time' style='display: inline'>" + timer + "</span>" + "</li></ul>";
         messages_text.append(str);
     } else {
@@ -554,4 +551,9 @@ function downloadMessage(friendName) {  //传入好友ID 的值
             }, 5);
         }
     });
+}
+
+function outset(){
+    sessionStorage.clear();
+    window.location.href='/user/login'
 }

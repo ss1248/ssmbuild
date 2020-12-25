@@ -23,7 +23,9 @@ public class ImpressionController {
     @RequestMapping("/getImpression")
     public List<UserImpression> getImpression(String toUserName) {
         List<UserImpression> list = new ArrayList<UserImpression>();
-        list = impressionService.selectImpressionByName(toUserName);
+        UserImpression userImpression= new UserImpression();
+        userImpression.setToUserName(toUserName);
+        list = impressionService.selectImpressionByName(userImpression);
         return list;
     }
 
@@ -40,8 +42,10 @@ public class ImpressionController {
         System.out.println(toUserName);
         System.out.println(fromUserName);
         System.out.println("%%%%");
-        List<UserImpression> list = impressionService.queryImpressionByName(fromUserName,
-                toUserName);
+        UserImpression userImpression = new UserImpression();
+        userImpression.setToUserName(toUserName);
+        userImpression.setFromUserName(fromUserName);
+        List<UserImpression> list = impressionService.queryImpressionByName(userImpression);
         System.out.println(list);
         System.out.println("@@@");
         return list;

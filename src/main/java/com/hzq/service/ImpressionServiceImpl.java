@@ -1,6 +1,7 @@
 package com.hzq.service;
 
 import com.hzq.dao.ImpressionMapper;
+import com.hzq.pojo.User;
 import com.hzq.pojo.UserImpression;
 
 import java.util.List;
@@ -12,8 +13,8 @@ public class ImpressionServiceImpl implements ImpressionService{
         this.impressionMapper=impressionMapper;
     }
 
-    public List<UserImpression> selectImpressionByName(String toUserName) {
-        return impressionMapper.selectImpressionByName(toUserName);
+    public List<UserImpression> selectImpressionByName(UserImpression userImpression) {
+        return impressionMapper.selectImpressionByName(userImpression);
     }
 
     public boolean deleteImpression(String fromUserName) {
@@ -24,7 +25,7 @@ public class ImpressionServiceImpl implements ImpressionService{
         return impressionMapper.addImpression(userImpression);
     }
 
-    public List<UserImpression> queryImpressionByName(String fromUserName,String toUserName){
-        return impressionMapper.queryImpressionByName(fromUserName,toUserName);
+    public List<UserImpression> queryImpressionByName(UserImpression userImpression){
+        return impressionMapper.queryImpressionByName(userImpression);
     }
 }

@@ -97,6 +97,8 @@ public class UserFriendController {
         System.out.println(currentUser);
         List<UserFriend> friendList = userFriendService.queryAllFriend(currentUser);
 
+        System.out.println(friendList);
+
         return friendList;
     }
 }

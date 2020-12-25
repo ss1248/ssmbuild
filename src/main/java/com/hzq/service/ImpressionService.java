@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface ImpressionService {
 
-        List<UserImpression> selectImpressionByName(String toUserName);
+        List<UserImpression> selectImpressionByName(UserImpression userImpression);
 
         boolean deleteImpression(@Param("fromUserName") String fromUserId);
 
         boolean addImpression(UserImpression userImpression);
 
-       List<UserImpression> queryImpressionByName(String fromUserName,String toUserName);
+       List<UserImpression> queryImpressionByName(UserImpression userImpression);
 
 }

@@ -40,7 +40,7 @@
     <div class="icon-box">
         <i class="iconfont icon-guanji1"
            style="color: black;font-size: 30px;left: 30px;top: 399px;position: relative" id="shutdown"
-           title="shout-down" onclick="window.location.href='${pageContext.request.contextPath}/user/login'"></i>
+           title="shout-down" onclick="outset()"></i>
     </div>
 
     <%--列表下拉按钮--%>
@@ -129,10 +129,10 @@
                          style="width: 70px;height: 70px;margin-top: 40px;margin-left: 40px;top: 0px;position: relative;">
                     <span style="margin-top: 18px;margin-left: 30px;position: relative;top: -50px;">用户名:</span>
                     <input type="text" name="username" id="username" placeholder="你登录的用户名"
-                           style="position: relative;margin-left: 136px;top: -40px;width: 200px">
+                           style="position: relative;margin-left: 136px;top: -40px;width: 200px" disabled>
                     <label style="margin-top: 0px;">
                         <span>姓&emsp;&emsp;名：</span>
-                        <input type="text" id="name" placeholder="您的真实姓名！" value="孟祥博" name="name">
+                        <input type="text" id="name" placeholder="您的真实姓名！" value="孟祥博" name="name" >
                     </label>
                     <label>
                         <span>生&emsp;&emsp;日：</span>
