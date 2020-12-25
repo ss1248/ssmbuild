@@ -177,6 +177,7 @@
     </div>
     <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/jquery.min.js"></script>
     <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/demo.js"></script>
+    <script type="text/javascript" src="<%=request.getContextPath()%>/online/js/ajax.js"></script>
 </div>
 </body>
 </html>

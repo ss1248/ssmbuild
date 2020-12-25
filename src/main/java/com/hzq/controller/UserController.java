@@ -171,17 +171,27 @@ public class UserController {
     @RequestMapping("/remain")
     public String remainPerMess(User user,HttpSession session){
         //获得当前用户名
+
+        System.out.println("usrcuowu0"+user);
         String username_temp= (String) session.getAttribute("user");
         //获得数据库中用户原来的信息
+
+
+        System.out.println("usr12331"+user);
         User user1=userService.queryUserByName(username_temp);
         /*赋值创建时间、密码、ID*/
+        System.out.println(user1);
+
         user.setId(user1.getId());
         user.setCreat_at(user1.getCreat_at());
         user.setPassword(user1.getPassword());
         user.setHeadPortrait(user1.getHeadPortrait());
         session.setAttribute("user",user.getUsername());
+
         //更新数据库用户信息
+        System.out.println(user);
         userService.updateUser(user);
+        System.out.println("###3");
         return "main2";
     }
 

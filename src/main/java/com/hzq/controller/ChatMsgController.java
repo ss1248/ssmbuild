@@ -42,17 +42,13 @@ public class ChatMsgController {
     @ResponseBody
     public int addMsg(String sendUserName, String toUserName, String msg){
         //放入数据库
-        System.out.println("###");
-        System.out.println(msg);
         ChatMsg chatMsg = new ChatMsg();
         chatMsg.setSendUserName(sendUserName);
         chatMsg.setToUserName(toUserName);
         chatMsg.setMsg(msg);
-        System.out.println(chatMsg);
 
         chatMsgService.addChatMsg(chatMsg);
 
-        System.out.println("###");
         return 0;
     }
 

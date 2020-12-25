@@ -17,30 +17,30 @@
     <div class="icon-box">
         <i class="iconfont icon-xiugaiziliao"
            style="color: black;font-size: 30px;left: 30px;top: 66px;position: relative" id="changeme"
-           title="change-message"></i>
+           title="修改个人资料"></i>
     </div>
     <%--联系人按钮--%>
     <div class="icon-box">
         <i class="iconfont icon-lianxiren"
-           style="color: black;;font-size: 30px;left: 30px;top: 106px;position: relative" title="chat"></i>
+           style="color: black;;font-size: 30px;left: 30px;top: 106px;position: relative" title="开始聊天"></i>
     </div>
     <%--消息按钮--%>
     <div class="icon-box">
         <i class="iconfont icon-xiaoxi"
            style="font-size: 30px;left: 30px;top: 146px;position: relative;color: black" id="xiaoxi"
-           title="message"></i>
+           title="消息记录"></i>
     </div>
     <%--添加按钮--%>
     <div class="icon-box">
         <i class="iconfont icon-tianjia"
            style="color: black;font-size: 30px;left: 30px;top: 176px;position: relative" id="add"
-           title="add-friends"></i>
+           title="添加好友"></i>
     </div>
     <%--退出按钮--%>
     <div class="icon-box">
         <i class="iconfont icon-guanji1"
            style="color: black;font-size: 30px;left: 30px;top: 399px;position: relative" id="shutdown"
-           title="shout-down" onclick="outset()"></i>
+           title="注销登录" onclick="outset()"></i>
     </div>
 
     <%--列表下拉按钮--%>
@@ -56,7 +56,7 @@
         <div class="chatbar-contacts">
             <div class="contacts-search-box">
                 <i class="iconfont icon-icon-"></i>
-                <input type="text" class="search-text" placeholder="请输入要搜索的联系人" style="width: 240px">
+                <input type="text" class="search-text" placeholder="好友列表" style="width: 240px">
                 <button type="button">搜索</button>
             </div>
             <%--好友列表--%>
@@ -72,7 +72,7 @@
         <div class="flist">
            <div class="contacts-search-box">
                 <i class="iconfont icon-icon-"></i>
-                <input type="text" class="search-text" placeholder="请输入要搜索的联系人">
+                <input type="text" class="search-text" placeholder="在线好友列表">
            </div>
            <ul class="chatbar-contacts-uls" id="list1">
 
@@ -101,7 +101,9 @@
                 <textarea class="messages-content" name="" id="" cols="30" rows="10"></textarea>
                 <input class="message-btn" type="button" value="发送" id="message-btn" onclick="sendmessage()">
                 <input type="button" onclick="downloadMessage('111111')" value="下载按钮">
-                <input type="button" value="查看好友消息">
+
+                <input type="button" value="查看好友消息" id="showFirendMsg">
+
             </div>
         </div>
         <div id="messagemanage">
@@ -129,7 +131,7 @@
                          style="width: 70px;height: 70px;margin-top: 40px;margin-left: 40px;top: 0px;position: relative;">
                     <span style="margin-top: 18px;margin-left: 30px;position: relative;top: -50px;">用户名:</span>
                     <input type="text" name="username" id="username" placeholder="你登录的用户名"
-                           style="position: relative;margin-left: 136px;top: -40px;width: 200px" disabled>
+                           style="position: relative;margin-left: 136px;top: -40px;width: 200px" readonly>
                     <label style="margin-top: 0px;">
                         <span>姓&emsp;&emsp;名：</span>
                         <input type="text" id="name" placeholder="您的真实姓名！" value="孟祥博" name="name" >
@@ -164,16 +166,9 @@
                        style="margin-left: 5px;margin-bottom: 10px;height: 35px;margin-top: 15px;" size="25">
                 <button type="button" id="find">搜索</button>
                 <hr>
-<!--                添加好友的样式-->
+
                 <ul class="friends1" id="findfriend">
 
-                   <%-- <li class="friends2" style="margin-top: 22px;"> <i class='iconfont icon-ren1 friends3' title='好友资料'></i>
-                        <p class="friends4">黄晓晓<button style="margin-left: 100px">添加好友</button></p><hr></li>
-                    <li class="friends2" style="margin-top: 22px;"> <i class='iconfont icon-ren1 friends3' title='好友资料'></i>
-                        <p class="friends4">黄晓晓<button style="margin-left: 100px">添加好友</button></p><hr></li>
-                    <li class="friends2" style="margin-top: 22px;"> <i class='iconfont icon-ren1 friends3' title='好友资料'></i>
-                        <p class="friends4">黄晓晓<button style="margin-left: 100px">添加好友</button></p><hr></li>
---%>
 
                 </ul>
             </div>
@@ -186,27 +181,27 @@
                          style="width: 70px;height: 70px;margin-top: 40px;margin-left: 40px;top: 0px;position: relative;">
                     <span style="margin-top: 18px;margin-left: 30px;position: relative;top: -50px;">用户名:</span>
                     <input type="text" name="usrname" id="username1" placeholder="好友的用户名"
-                           style="position: relative;margin-left: 136px;top: -40px;width: 200px" disabled>
+                           style="position: relative;margin-left: 136px;top: -40px;width: 200px" readonly>
                     <label style="margin-top: 0;">
                         <span>姓&emsp;&emsp;名：</span>
-                        <input type="text" name="name" id="name1" placeholder="好友的真实姓名！" disabled>
+                        <input type="text" name="name" id="name1" placeholder="好友的真实姓名！" readonly>
                     </label>
                     <label>
                         <span>生&emsp;&emsp;日：</span>
-                        <input type="text" name="birthday" id="birthday1" placeholder="填写您的出生日期！" disabled>
+                        <input type="text" name="birthday" id="birthday1" placeholder="填写您的出生日期！" readonly>
                     </label>
                     <label>
                         <span>电子邮件：</span>
-                        <input type="email" name="email"id="email1" placeholder="@.com" disabled>
+                        <input type="email" name="email"id="email1" placeholder="@.com" readonly>
                     </label>
                     <label>
                         <span>手机号码：</span>
-                        <input type="text" name="tel" id="tel1" placeholder="好友的电话号码!" disabled>
+                        <input type="text" name="tel" id="tel1" placeholder="好友的电话号码!" readonly>
                     </label>
                     <label>
 <!--好友的介绍与评价-->
                         <span>个人介绍：</span>
-                        <textarea id="evaluate" name="evaluate" placeholder="好友介绍" disabled></textarea>
+                        <textarea id="evaluate" name="evaluate" placeholder="好友介绍" readonly></textarea>
                     </label>
                     <label>
                         <input type="button" class="button" value="查看好友评价" style="position: relative;margin-left: 140px" id="cfe">
@@ -236,6 +231,8 @@
 
         </ul>
     </div>
+
+
         <div class="fevaluate">
             <textarea class="evarea"></textarea>
             <button class="evbt" onclick="addFriendView()">添加好友评价</button>
