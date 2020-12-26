@@ -21,11 +21,16 @@ public class ImpressionController {
 
 //    获取好友评价
     @RequestMapping("/getImpression")
+    @ResponseBody
     public List<UserImpression> getImpression(String toUserName) {
-        List<UserImpression> list = new ArrayList<UserImpression>();
+        System.out.println(toUserName);
+
         UserImpression userImpression= new UserImpression();
         userImpression.setToUserName(toUserName);
-        list = impressionService.selectImpressionByName(userImpression);
+        List<UserImpression> list = impressionService.selectImpressionByName(userImpression);
+
+        System.out.println(list);
+        System.out.println("#####");
         return list;
     }
 
@@ -39,28 +44,36 @@ public class ImpressionController {
     @RequestMapping("/queryImpressionPer")
     @ResponseBody
     public List<UserImpression> queryImpressionPer(String toUserName, String fromUserName){
-        System.out.println(toUserName);
-        System.out.println(fromUserName);
-        System.out.println("%%%%");
         UserImpression userImpression = new UserImpression();
         userImpression.setToUserName(toUserName);
         userImpression.setFromUserName(fromUserName);
         List<UserImpression> list = impressionService.queryImpressionByName(userImpression);
-        System.out.println(list);
-        System.out.println("@@@");
+
         return list;
     }
     //添加好友评价
     @RequestMapping("/addImpression")
     @ResponseBody
-    public List<UserImpression> addMsg(String fromUserName, String toUserName,String msg) {
+    public String addMsg(String fromUserName, String toUserName,String msg) {
+
         System.out.println(fromUserName+"\n"+toUserName+"\n"+msg);
+
+/*        UserImpression userImpression = new UserImpression();
+        userImpression.setToUserName(toUserName);
+        userImpression.setFromUserName(fromUserName);
+        List<UserImpression> list = impressionService.queryImpressionByName(userImpression);
+        System.out.println(list);
+        if(list!=null){
+            impressionService.queryImpressionByName();
+        }
+        */
+
+
         UserImpression impression = new UserImpression();
         impression.setFromUserName(fromUserName);
         impression.setToUserName(toUserName);
         impression.setMsg(msg);
         impressionService.addImpression(impression);
-        System.out.println("######");
         return null;
     }
 }

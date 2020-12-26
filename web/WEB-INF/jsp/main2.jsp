@@ -114,7 +114,7 @@
                         <div class="content">
                             <h3 class="title">消息记录</h3>
                             <div class="textcontent">
-                                文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容文本内容
+                                好友消息    好友消息    好友消息    好友消息    好友消息    好友消息    好友消息    好友消息
                             </div>
                             <div class="detail"><span class="lookdetail">查看详情</span></div>
                         </div>
@@ -212,7 +212,7 @@
 <!--好友评价界面-->
         <div class="evaluate1">
             <ul class="friends1">
-                <li class="friends2"><p>这个人很懒，什么都没留下。。。</p></li>
+                <li class="friends2"><p><i style="font-family: 华文楷体;color: black">data[i].msg</i>  ---data[i].fromUserName</p></li>
                 <li class="friends2"><p>这个人很懒，什么都没留下。。。</p></li>
                 <li class="friends2"><p>这个人很懒，什么都没留下。。。</p></li>
                 <li class="friends2"><p>这个人很懒，什么都没留下。。。</p></li>
@@ -227,7 +227,6 @@
 <%--            <li class="friends2"><p>您收到xxx的好友请求</p><button class="fvbu">接受</button><button class="fvbu">拒绝</button></li>--%>
 <%--            <li class="friends2"><p>您收到xxx的好友请求</p><button class="fvbu">接受</button><button class="fvbu">拒绝</button></li>--%>
 <%--            <li class="friends2"><p>您收到xxx的好友请求</p><button class="fvbu">接受</button><button class="fvbu">拒绝</button></li>--%>
-
 
         </ul>
     </div>

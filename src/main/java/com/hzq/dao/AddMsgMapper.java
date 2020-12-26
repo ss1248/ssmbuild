@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AddMsgMapper {
 
-    List<AddMsg> selectMsgByUserName(@Param("toUserName") String toUserName);
+    List<AddMsg> selectMsgByUserName(AddMsg addMsg);
 
     int getMsgNum(@Param("toUserName") String toUserName);
 

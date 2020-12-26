@@ -22,27 +22,25 @@ public class MsgController {
     @RequestMapping("/getMsg")
     @ResponseBody
     public List<AddMsg> getMsg(String toUserName) {
-
+        AddMsg addMsg = new AddMsg();
+        addMsg.setToUserName(toUserName);
         List<AddMsg> addMsgList = new ArrayList<AddMsg>();
-        addMsgList = addMsgService.selectMsgByUserName(toUserName);
+        addMsgList = addMsgService.selectMsgByUserName(addMsg);
+        System.out.println(addMsgList);
         return addMsgList;
     }
 
-//    @RequestMapping("{toUserName}/getMsgNum")
-//    public int getMsgNum(String toUserName) {
-//        return  addMsgService.getMsgNum(toUserName);
-//    }
 
     @RequestMapping("/deleteMsg")
     public List<AddMsg> deleteMsg(String fromUserName) {
         addMsgService.deleteMsg(fromUserName);
+
         return null;
     }
 
     @RequestMapping("/addMsg")
     @ResponseBody
     public int addMsg(String fromUserName, String toUserName) {
-        System.out.println(fromUserName+"\n"+toUserName);
         String msg = "请求添加你为好友";
 
      /*   if(){
@@ -52,7 +50,6 @@ public class MsgController {
         addMsg.setFromUserName(fromUserName);
         addMsg.setToUserName(toUserName);
         addMsg.setMsg(msg);
-        System.out.println(addMsg);
         addMsgService.addMsg(addMsg);
         return 0;
     }

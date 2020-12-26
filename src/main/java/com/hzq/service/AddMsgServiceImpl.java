@@ -12,8 +12,8 @@ public class AddMsgServiceImpl implements AddMsgService {
         this.addMsgMapper = addMsgMapper;
     }
 
-    public List<AddMsg> selectMsgByUserName(String toUserName) {
-        return addMsgMapper.selectMsgByUserName(toUserName);
+    public List<AddMsg> selectMsgByUserName(AddMsg addMsg) {
+        return addMsgMapper.selectMsgByUserName(addMsg);
     }
 
     public int getMsgNum(String toUserName) {

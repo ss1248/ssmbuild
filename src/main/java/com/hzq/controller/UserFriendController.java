@@ -35,9 +35,6 @@ public class UserFriendController {
     @ResponseBody
     public String addFriends(String sendUserName,String toUserName){
 
-        System.out.println(sendUserName+" \n"+toUserName);
-
-
         UserFriend userFriend1 = new UserFriend();
         UserFriend userFriend2 = new UserFriend();
 
@@ -47,18 +44,11 @@ public class UserFriendController {
         userFriend2.setFriendName(sendUserName);
         User user1 = userService.queryUserByName(toUserName);
         User user2 = userService.queryUserByName(sendUserName);
-        System.out.println(user1);
-        System.out.println(user2);
         userFriend1.setFriendId(user1.getId());
         userFriend2.setFriendId(user2.getId());
 
-        System.out.println(userFriend1);
-        System.out.println(userFriend2);
-
         userFriendService.addFriend(userFriend1);
-        System.out.println("##");
         userFriendService.addFriend(userFriend2);
-        System.out.println("添加好友成功");
         return null;
     }
 

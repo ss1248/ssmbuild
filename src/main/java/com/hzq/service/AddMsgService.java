@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface AddMsgService {
 
-    List<AddMsg> selectMsgByUserName(String toUserName);
+    List<AddMsg> selectMsgByUserName(AddMsg addMsg);
 
     int getMsgNum(String toUserName);
 

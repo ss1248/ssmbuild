@@ -103,18 +103,24 @@ function addFriend(toName){
 
 /*TO DO*/
 //点击好友列表消息历史记录按钮，显示消息记录
-$("#showFirendMsg").click(function (){
+function showT(){
     $.ajax({
-        url:'',//前端传：发送账号，接受账号，消息内容，存入数据库
-        data:{'fromUserName':userName,"toUseName":toName},
+        url:'/impression/getImpression',//前端传：发送账号，接受账号，消息内容，存入数据库
+        data:{'toUserName':userName},
         success:function (data){
+            $(".friends1").html("");
+            for(var i=0;i<data.length;i++){
+                $(".friends1").append("<li class=\"friends2\"><p><i style=\"font-family: 华文楷体;" +
+                    "color: black\">"+data[i].msg+"</i><i style='margin-left: 30px'>from---"+data[i].fromUserName+"</i></p></li>\n")
+            }
             console.log(data);
         },
         error:function (error){
             console.log(error);
+            console.log("显示所有好友评价失败");
         }
     })
-})
+}
 
 
 //下载好友
@@ -138,6 +144,7 @@ var div = document.getElementById("messagemanage");
 var div1 = document.getElementById("friend-search");
 var bbb = document.getElementById("xiaoxi");
 var ccc = document.getElementById("add")
+var ttt = document.getElementById("showFirendMsg");
 bbb.onclick = function () {
     count++;
     if (count % 2 === 1)
@@ -145,7 +152,14 @@ bbb.onclick = function () {
     if (count % 2 === 0)
         div.style.visibility = "hidden";
 }
-
+ttt.onclick = function (){
+    count++;
+    if (count % 2 === 1) {
+        div.style.visibility = "visible";
+    }
+    if (count % 2 === 0)
+        div.style.visibility = "hidden";
+}
 ccc.onclick = function () {
     count++;
     if (count % 2 === 1)
@@ -180,6 +194,7 @@ $("#heading").hover(function () {
 });
 $("#chev").click(function () {
     $(".evaluate1").slideToggle();
+    showT()
 });
 
 $(".icon-liebiao").click(function () {
@@ -192,7 +207,40 @@ $("#cfe").click(function () {
     searchImpression(toName,userName);
 });
 
+//查询好友印象事件
+function  searchImpression(toName,userName){
+    $.ajax({
+        url:'/impression/queryImpressionPer',
+        data:{'toUserName':toName,'fromUserName':userName},
+        success:function (data){
+            console.log(data);
+            $(".evarea").html("");
+            for (var i=0 ;i<data.length;i++){
+                $(".evarea").append(data[i].msg+"\n");
+            }
+        },
+        error:function (){
+        }
+    })
+}
 
+//添加好友评价事件
+function addFriendView(){
+    var msg = $(".evarea").val();
+    $.ajax({
+        url:'/impression/addImpression',
+        data:{'fromUserName':userName,'toUserName':toName,'msg':msg},
+        success:function (){
+            console.log("添加好友评价成功");
+        },
+        error:function (){
+            console.log(userName);
+            console.log(toName);
+            console.log("添加好友评价失败");
+            console.log(msg);
+        }
+    })
+}
 
 //点击好友验证消息按钮
 $(".fvbu1").click(function () {
@@ -389,7 +437,6 @@ function outset(){
 }
 
 //下载好友消息事件
-
 function downloadMessage(friendName) {
     var messageDownload = '';
     $.ajax({
@@ -480,7 +527,10 @@ function addAgree(fromUserName) {
         data:{'sendUserName':fromUserName,'toUserName':userName},
         // data: data,
         success: function () {
+            console.log("添加好有成功！")
+            //通过
             addRefuse(fromUserName);
+            getNotice(userName);
         }
     });
 
@@ -493,10 +543,20 @@ function addRefuse(fromUserName) {
         url: '/msg/deleteMsg',
         data:{'fromUserName':fromUserName},
         // data: data,
-        success: function () {
+        success: function (data) {
+            if(data==null){
+                console.log("shancchengg ");
+            }
+            else{
+                console.log("shiah")
+            }
             alert("删除成功");
+        },
+        error:function (){
+            console.log("删除好友请求失败");
         }
     });
+    getNotice(userName);
 }
 
 //好友请求消息显示事件
@@ -519,20 +579,7 @@ function getNotice(userName) {
     });
 }
 
-//添加好友评价事件
-function addFriendView(){
-    var msg = $(".evarea").val();
-    $.ajax({
-        url:'impression/addImpression',
-        data:{'fromUserName':userName,'toUserName':toName,'msg':msg},
-        success:function (){
-            console.log("添加好友评价成功");
-        },
-        error:function (){
-            console.log("添加好友评价失败");
-        }
-    })
-}
+
 
 //显示好友列表事件
 function  showFriendList(){
@@ -551,21 +598,7 @@ function  showFriendList(){
     })
 }
 
-//查询好友印象事件
 
-function  searchImpression(toName,userName){
-    $.ajax({
-        url:'/impression/queryImpressionPer',
-        data:{'toUserName':toName,'fromUserName':userName},
-        success:function (data){
-            console.log(data);
-            $(".evarea").html("");
-            $(".evarea").append("data");
-        },
-        error:function (){
-        }
-    })
-}
 
 
 
