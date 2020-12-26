@@ -26,6 +26,7 @@ public class UserFriendServiceImpl implements UserFriendService {
     public UserFriend queryFriendById(int friendId){
         return userFriendMapper.queryFriendById(friendId);
     }
+
     public UserFriend queryFriendByName(String friendName){
         return userFriendMapper.queryFriendByName(friendName);
     }
@@ -33,4 +34,9 @@ public class UserFriendServiceImpl implements UserFriendService {
     public List<UserFriend> queryAllFriend(String userName) {
         return userFriendMapper.queryAllFriend(userName);
     }
+
+    public boolean deleteByName(String username){
+        return userFriendMapper.deleteByName(username);
+    }
+
 }

@@ -18,5 +18,6 @@ public interface UserFriendMapper {
 
     List<UserFriend> queryAllFriend(String userName);
 
+    boolean deleteByName(String username);
 
 }

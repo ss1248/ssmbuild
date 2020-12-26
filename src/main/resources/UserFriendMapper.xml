@@ -27,4 +27,9 @@
         where friendName = #{friendName}
     </select>
 
+    <delete id="deleteByName" parameterType="String">
+        delete form online.userfriend
+        where username=#{username} or friendName =#{username}
+    </delete>
+
 </mapper>

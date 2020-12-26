@@ -86,7 +86,13 @@ public class UserFriendController {
         //输出所有用户
         System.out.println(currentUser);
         List<UserFriend> friendList = userFriendService.queryAllFriend(currentUser);
-
+        for(UserFriend userFriend:friendList){
+            User user = userService.queryUserByName(userFriend.getFriendName());
+            if(user==null){
+                userFriendService.deleteByName(userFriend.getFriendName());
+            }
+        }
+        friendList = userFriendService.queryAllFriend(currentUser);
         System.out.println(friendList);
 
         return friendList;

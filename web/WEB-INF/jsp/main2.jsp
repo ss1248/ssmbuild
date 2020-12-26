@@ -56,7 +56,7 @@
         <div class="chatbar-contacts">
             <div class="contacts-search-box">
                 <i class="iconfont icon-icon-"></i>
-                <input type="text" class="search-text" placeholder="好友列表" style="width: 240px">
+                <input type="text" class="search-text" placeholder="在线好友列表" style="width: 240px">
                 <button type="button">搜索</button>
             </div>
             <%--好友列表--%>
@@ -72,7 +72,7 @@
         <div class="flist">
            <div class="contacts-search-box">
                 <i class="iconfont icon-icon-"></i>
-                <input type="text" class="search-text" placeholder="在线好友列表">
+                <input type="text" class="search-text" placeholder="好友列表">
            </div>
            <ul class="chatbar-contacts-uls" id="list1">
 
@@ -212,10 +212,9 @@
 <!--好友评价界面-->
         <div class="evaluate1">
             <ul class="friends1">
-                <li class="friends2"><p><i style="font-family: 华文楷体;color: black">data[i].msg</i>  ---data[i].fromUserName</p></li>
-                <li class="friends2"><p>这个人很懒，什么都没留下。。。</p></li>
-                <li class="friends2"><p>这个人很懒，什么都没留下。。。</p></li>
-                <li class="friends2"><p>这个人很懒，什么都没留下。。。</p></li>
+                <li class="friends2"><p>暂无好友评价。。。</p></li>
+                <li class="friends2"><p>暂无好友评价。。。</p></li>
+                <li class="friends2"><p>暂无好友评价。。。</p></li>
             </ul>
         </div>
     </div>

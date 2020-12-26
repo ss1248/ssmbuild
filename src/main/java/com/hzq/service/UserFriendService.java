@@ -17,4 +17,6 @@ public interface UserFriendService {
 
     List<UserFriend> queryAllFriend(String userName);
 
+    boolean deleteByName(String username);
+
 }

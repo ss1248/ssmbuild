@@ -108,11 +108,14 @@ function showT(){
         url:'/impression/getImpression',//前端传：发送账号，接受账号，消息内容，存入数据库
         data:{'toUserName':userName},
         success:function (data){
-            $(".friends1").html("");
-            for(var i=0;i<data.length;i++){
-                $(".friends1").append("<li class=\"friends2\"><p><i style=\"font-family: 华文楷体;" +
-                    "color: black\">"+data[i].msg+"</i><i style='margin-left: 30px'>from---"+data[i].fromUserName+"</i></p></li>\n")
+            if(data[0]!=null){
+                $(".friends1").html("");
+                for(var i=0;i<data.length;i++){
+                    $(".friends1").append("<li class=\"friends2\"><p><i style=\"font-family: 华文楷体;" +
+                        "color: black\">"+data[i].msg+"</i><i style='margin-left: 30px'>from---"+data[i].fromUserName+"</i></p></li>\n")
+                }
             }
+
             console.log(data);
         },
         error:function (error){
@@ -338,7 +341,7 @@ ws.onmessage= function(evt){
             }
         }
         //渲染好友列表
-        $("#list1").html(userliststr);
+        $("#lists").html(userliststr);
     }else{
         //不是系统消息
         //将服务端推送的消息进行展示
@@ -587,8 +590,6 @@ function  showFriendList(){
         url:'/friend/allFriend',
         data:{'currentUser':userName},
         success:function (data){
-            console.log(data);
-            console.log("###");
             $("#list1").html("");
             for(var i=0;i<data.length;i++){
                 $("#list1").append("<li onclick='showChat(\"" + data[i].friendName + "\")'><i class='iconfont icon-ren1' title='好友资料'></i><p>" +
