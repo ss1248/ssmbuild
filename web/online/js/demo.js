@@ -101,7 +101,6 @@ function addFriend(toName){
 
 }
 
-/*TO DO*/
 //点击好友列表消息历史记录按钮，显示消息记录
 function showT(){
     $.ajax({
@@ -165,10 +164,14 @@ ttt.onclick = function (){
 }
 ccc.onclick = function () {
     count++;
-    if (count % 2 === 1)
+    if (count % 2 === 1) {
+        $("#findArea").html("");
+        $("#findfriend").html("");
         div1.style.visibility = "visible";
+    }
     if (count % 2 === 0)
         div1.style.visibility = "hidden";
+
 }
 
 document.getElementById("alert_time").innerText = time()
